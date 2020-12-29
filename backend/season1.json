@@ -1,5 +1,5 @@
 {
-    "data": [
+    "episodes": [
         {
             "seasonNumber": "1",
             "episodeNumber": "1",
@@ -161,7 +161,7 @@
             "seasonNumber": "1",
             "episodeNumber": "2",
             "name": "",
-            "references": "[]"
+            "references": []
         }
     ],
     "links": {
