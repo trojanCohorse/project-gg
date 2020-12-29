@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const seasonSchema = new Schema({
-  // season: { type: Number },
+  // _id: { type: mongoose.Schema.Types.ObjectId },
+  season: { type: Number, required: true },
   episodes: { type: Array, required: true }
 }, {
   timestamps: true
@@ -12,6 +13,11 @@ const seasonSchema = new Schema({
 const Season = mongoose.model('Season', seasonSchema);
 
 module.exports = Season;
+
+
+
+
+
 
 
 // example :
