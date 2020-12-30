@@ -1,12 +1,33 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Select from 'react-select';
+
+const seasonOptions = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 6, label: "6" },
+  { value: 7, label: "7" },
+]
+
+// const episodeOptions = [{1 to max number depending on the season number}]
+    // get request based on season number?
+  // season 1 episodes -> { value: 1, label: "1 - Pilot" }
+  // season 2 episodes
+  // season 3 episodes
+  // season 4 episodes
+  // season 5 episodes
+  // season 6 episodes
+  // season 7 episodes
 
 const InputReferences = () => {
   const [seasonNum, setSeasonNum] = useState(1);
   const [episodeNum, setEpisodeNum] = useState(1);
   const [episodeName, setEpisodeName] = useState('');
   const [subject, setSubject] = useState('');
-  const [timestamp, setTimestamp] = useState("");
+  const [timestamp, setTimestamp] = useState('');
   const [quote, setQuote] = useState('');
   const [speaker, setSpeaker] = useState('');
   const [speakerContext, setSpeakerContext] = useState('');
@@ -15,25 +36,39 @@ const InputReferences = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('season num: ', seasonNum);
-    setSubmit(!submit);
-  }
-  useEffect(() => {
-    console.log('test');
-    // axios.post({
-    //   method: 'post',
-    //   url: '',
-    //   data: {
-    //     season: seasonNum,
-    //     episode: episodeNum,
-    //     name: episodeName,
-    //     references: [
-          
-    //     ]
-    //   }
-    // }).then((res) => {
-    //   console.log('maloned', res);
-    // });
+  
+    // store the season number, episode number and episode name so that they can be used to check for the specific season and episode
+    // all of the other values need to be placed inside of an object
+      // that object will be pushed to the episodes array
+
+    // put in object to push to the episode array
+    const reference = {
+      // id: 1, --> Array.length ; added in backend
+      subject: subject,
+      timestamp: timestamp,
+      quote: quote,
+      speaker: speaker,
+      context: speakerContext,
+      meaning: meaning,
+      // screenshot: "https://some-picture-hosting-website.com/image"
+    }
+
+    // STRETCH: middleware to validate references
+
+    axios.post({
+      method: 'POST',
+      url: '',
+      data: {
+        seasonNumber: seasonNum.value,
+        episodeNumber: episodeNum,
+        name: episodeName,
+        references: reference
+      }
+    }).then((res) => {
+      console.log('maloned', res);
+    });
+
+    // set back to default values
     setSeasonNum(1);
     setEpisodeNum(1);
     setEpisodeName('');
@@ -44,22 +79,19 @@ const InputReferences = () => {
     setSpeakerContext('');
     setMeaning('');
     setSubmit('');
-  }, [submit])
-  
-  // componentDidMount
-  // useEffect(() => {
-  // const res = await axios.post('https:sample-endpoint.com/data')
-  // })
+  }
+
   return (
     <section className="referencesForm">
       <h2>Add your reference!</h2>
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
-        <input
-          type="text"
-          name="seasonNum"
+        <Select
+          // name="seasonNum"
+          className="seasonSelect"
           value={seasonNum}
-          onChange={(e) => setSeasonNum(e.target.value)}
+          options={seasonOptions}
+          onChange={(seasonNum) => setSeasonNum(seasonNum)}
           required
         />
 
@@ -136,6 +168,8 @@ const InputReferences = () => {
         />
 
         <input type="submit" value="Submit" />
+        {/* STRETCH */}
+        <button>Add Another Reference</button>
       </form>
     </section>
   );

@@ -11,16 +11,20 @@
     }
 
     label, input {
-      width: 40vw;
+      // width: 40vw;
       margin: 10px;
     }
+
+    label {
+      grid-column-start: 1;
+    }
     
-    input {
+    input, .seasonSelect {
       grid-column: 2 / span 2;
     }
 
-    input[type=submit] {
-      grid-column-start: 2;
+    input[type=submit], button {
+      grid-column: 2 / span 1;
     }
   }
 
