@@ -1,20 +1,36 @@
 const router = require('express').Router();
 let Season = require('../models/season.model');
 
-// whateverurlhere/seasons/i/episode
+// ....../seasons/id
 
+// get season at id (1-7)
 router.route('/:id').get((req, res) => {
-  // const id = req.params.id;
-  
-  // find all seasons
-  // filter array to only the season that matches the id
-
   Season.find({ season: req.params.id })
     .then(seasons => res.json(seasons))
     .catch(err => res.status(400).json('Error: ' + err));
 })
 
+// add season
+router.route('/add').post((req, res) => {
+  const { season, episodes } = req.body
+  const newSeasonEpisode = new Season({ season , episodes })
 
+  newSeasonEpisode.save()
+    .then(() => res.json('SeasonEpisode added!'))
+    .catch(err => res.status(400).json('Error: ' + err))
+})        
+
+
+// seasons/:id/episodes/:id
+router.route('/:seasonId/episodes/:episodeId').get((req, res) => {
+  const seasonId = req.params.seasonId;
+  const episodeId = req.params.episodeId;
+
+  Seasons.find({ 
+    seasonNumber: seasonId,
+    episodeNumber: episodeId 
+  })
+});
 
 
 
@@ -27,13 +43,5 @@ router.route('/:id').get((req, res) => {
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
 
-router.route('/add').post((req, res) => {
-  const { season, episodes } = req.body
-  const newSeasonEpisode = new Season({ season , episodes })
-
-  newSeasonEpisode.save()
-    .then(() => res.json('SeasonEpisode added!'))
-    .catch(err => res.status(400).json('Error: ' + err))
-})        
 
 module.exports = router;

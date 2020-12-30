@@ -21,12 +21,11 @@ connection.once('open', () => {
 
 const seasonsRouter = require('./routes/seasons');
 
-// yeet gang
-app.use('/seasons', seasonsRouter)
+app.use('/seasons', seasonsRouter);
 // app.use('/',)
 
 app.listen(port, () => {
-
+  console.log(`Listening on port ${port}...`);
 });
 
 
