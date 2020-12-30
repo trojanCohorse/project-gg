@@ -26,7 +26,7 @@ router.route('/:seasonId/episodes/:episodeId').get((req, res) => {
   const seasonId = req.params.seasonId;
   const episodeId = req.params.episodeId;
 
-  Seasons.find({ 
+  Season.find({ 
     seasonNumber: seasonId,
     episodeNumber: episodeId 
   })
