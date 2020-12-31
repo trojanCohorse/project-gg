@@ -57,11 +57,10 @@ const InputReferences = () => {
 
     axios.post({
       method: 'POST',
-      url: '',
+      url: 'https://project-gg.herokuapp.com/seasons/references/add',
       data: {
         seasonNumber: seasonNum.value,
         episodeNumber: episodeNum,
-        name: episodeName,
         references: reference
       }
     }).then((res) => {
