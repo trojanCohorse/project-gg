@@ -111,7 +111,8 @@ const InputReferences = () => {
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
         <Select
-          // name="seasonNum"
+          id="seasonNum"
+          name="seasonNum"
           className="seasonSelect"
           value={seasonNum}
           options={seasonOptions}
@@ -124,7 +125,8 @@ const InputReferences = () => {
 
         <label htmlFor="episodeNum">Episode Number</label>
         <Select
-          // name="seasonNum"
+          id="episodeNum"
+          name="episodeNum"
           className="seasonSelect"
           value={episodeNum}
           options={episodeOptions}
@@ -138,6 +140,7 @@ const InputReferences = () => {
         <label htmlFor="subject">Subject</label>
         <input
           type="text"
+          id="subject"
           name="subject"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
@@ -148,6 +151,7 @@ const InputReferences = () => {
         <p>
           <input
             type="number"
+            id="timestamp1"
             name="timestamp"
             value={timestamp}
             // onChange={(e) => setTimestamp(e.target.value)}
@@ -157,6 +161,7 @@ const InputReferences = () => {
           /> :
           <input
             type="number"
+            id="timestamp2"
             name="timestamp"
             value={timestamp}
             // onChange={(e) => setTimestamp(e.target.value)}
@@ -169,6 +174,7 @@ const InputReferences = () => {
         <label htmlFor="quote">Quote</label>
         <input
           type="text"
+          id="quote"
           name="quote"
           value={quote}
           onChange={(e) => setQuote(e.target.value)}
@@ -178,6 +184,7 @@ const InputReferences = () => {
         <label htmlFor="speaker">Speaker</label>
         <input
           type="text"
+          id="speaker"
           name="speaker"
           value={speaker}
           onChange={(e) => setSpeaker(e.target.value)}
@@ -187,6 +194,7 @@ const InputReferences = () => {
         <label htmlFor="speakerContext">Context</label>
         <input
           type="text"
+          id="speakerContext"
           name="speakerContext"
           value={speakerContext}
           onChange={(e) => setSpeakerContext(e.target.value)}
@@ -196,6 +204,7 @@ const InputReferences = () => {
         <label htmlFor="meaning">Meaning</label>
         <input
           type="text"
+          id="meaning"
           name="meaning"
           value={meaning}
           onChange={(e) => setMeaning(e.target.value)}
