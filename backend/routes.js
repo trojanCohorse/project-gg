@@ -73,27 +73,35 @@ router.route('/add').post((req, res) => {
   const newSeasonEpisode = new Season({ season , episodes });
 
   newSeasonEpisode.save()
-    .then(() => res.json('SeasonEpisode added!'))
+    .then(() => res.status(200).json('SeasonEpisode added!'))
     .catch(err => res.status(500).json('Error: ' + err))
 })        
 
 // add episode
-router.route('/episodes/add').put(async (req, res) => {
-  const episodeData = req.body;
-  console.log(typeof episodeData);
-  if (episodeData == {}) {
-    console.log('wrongg');
-    res.status(400).json('Please provide episode');
-  } 
-  // const season = await Season.findOne({ season: req.params.id });
+router.route('/episodes/add').post(async (req, res) => {
+  const { seasonNumber, episodeNumber, name } = req.body;
 
-  // const seasonNumber = episodeData
-  // const newEpisode = new Episode({ 
-    
-  // })
-  // season.episodes.push(newEpisode);
-  // // const updated = await season.save();
-  // res.json('updated');
+  if (!seasonNumber || !episodeNumber || !name) {
+    res.status(400).json('Please provide episode data');
+  } else {
+    const season = await Season.findOne({ season: seasonNumber });
+    const references = req.body.references || [];
+
+    if (season.episodes.filter(item => Number(item.episodeNumber) == Number(episodeNumber)).length > 0) {
+      res.json('Episode already exists!');
+    } else {
+      const newEpisode = new Episode({ 
+        seasonNumber, episodeNumber, name, references  
+      });
+      season.episodes.push(newEpisode);
+  
+      season.save().then(() => res.status(200).json(newEpisode));    
+    }
+  }
+})
+
+router.route('/references/add').put(async (req, res) => {
+
 })
 
 // dummy data for post on episode:
