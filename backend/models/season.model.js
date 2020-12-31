@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const seasonSchema = new Schema({
   season: { type: Number, required: true },
   episodes: { type: Array, required: true }
-}, { timestamps: true });
+});
 
 const Season = mongoose.model('Season', seasonSchema);
 
