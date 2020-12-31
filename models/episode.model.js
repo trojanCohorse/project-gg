@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // format data to post to the database
 const episodeSchema = new Schema({
   seasonNumber: { type: Number, required: true },
-  episodeNumber: { type: Number, require: true, unique: true },
+  episodeNumber: { type: Number, required: true, unique: true },
   name: { type: String, required: true, unique: true },
   references: { type: Array, required: true },
 }, { timestamps: true });

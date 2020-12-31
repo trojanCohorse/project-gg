@@ -79,14 +79,14 @@ router.route('/:seasonId/episodes/:episodeId/references/:referenceId').get((req,
 router.route('/episodes/add').post(async (req, res) => {
   const { seasonNumber, episodeNumber, name } = req.body;
   
-  if (!seasonNumber || !episodeNumber || !name) {
+  if (!seasonNumber || !episodeNumber) {
     res.status(400).json('Please provide episode data');
   } else {
     const season = await Season.findOne({ season: seasonNumber });
     const references = req.body.references || [];
     
     if (season.episodes.filter(item => Number(item.episodeNumber) == Number(episodeNumber)).length > 0) {
-      res.json('Episode already exists!');
+      res.status(400).json('Episode already exists!');
     } else {
       const newEpisode = new Episode({ 
         seasonNumber, episodeNumber, name, references  
@@ -100,7 +100,7 @@ router.route('/episodes/add').post(async (req, res) => {
 
 // add references to episode 
 router.route('/references/add').post(async (req, res) => {
-  const { seasonNumber, episodeNumber, name, references } = req.body;
+  const { seasonNumber, episodeNumber, references } = req.body;
   const { subject, timestamp, quote, speaker, context, meaning } = references[0];
 
   if (!seasonNumber || !episodeNumber) {
