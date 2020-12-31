@@ -147,29 +147,35 @@ const InputReferences = () => {
           required
         />
 
-        <label htmlFor="timestamp">Time Stamp</label>
-        <p>
-          <input
-            type="number"
-            id="timestamp1"
-            name="timestamp"
-            value={timestamp}
-            // onChange={(e) => setTimestamp(e.target.value)}
-            min="0"
-            max="60"
-            required
-          /> :
-          <input
-            type="number"
-            id="timestamp2"
-            name="timestamp"
-            value={timestamp}
-            // onChange={(e) => setTimestamp(e.target.value)}
-            min="0"
-            max="60"
-            required
-          />
-        </p>
+        <fieldset>
+          <legend>Time Stamp</legend>
+          <div className="minutes">
+            <label htmlFor="minutes">Minutes</label>
+            <input 
+              type="number"
+              id="minutes"
+              name="minutes"
+              // value={timestamp}
+              // onChange={(e) => setTimestamp(e.target.value)}
+              min="0"
+              max="60"
+              required
+            />
+          </div>
+          <div className="seconds">
+            <label htmlFor="seconds">Seconds</label>
+            <input
+              type="number"
+              id="seconds"
+              name="seconds"
+              // value={timestamp}
+              // onChange={(e) => setTimestamp(e.target.value)}
+              min="0"
+              max="60"
+              required
+            />
+          </div>
+        </fieldset>
 
         <label htmlFor="quote">Quote</label>
         <input

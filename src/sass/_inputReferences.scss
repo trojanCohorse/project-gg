@@ -19,12 +19,33 @@
       grid-column-start: 1;
     }
     
-    input, .seasonSelect, p {
+    input, .seasonSelect {
       grid-column: 2 / span 2;
     }
 
     input[type=submit], button {
       grid-column: 2 / span 1;
+    }
+
+    fieldset {
+      grid-column: 1 / span 3;
+      // border: none;
+      display: grid;
+      position: relative;
+
+      legend {
+        // TODO values need to be set
+        position: absolute;
+        top: 20%;
+      }
+
+      .minutes {
+        grid-column: 2;
+      }
+
+      .seconds {
+        grid-column: 3;
+      }
     }
   }
 
