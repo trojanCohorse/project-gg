@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import axiosRequest from "./EpisodeRequest.js";
 
 const seasonOptions = [
   { value: 1, label: "1" },
@@ -12,6 +13,7 @@ const seasonOptions = [
   { value: 7, label: "7" },
 ]
 
+let episodeOptions = undefined;
 // const episodeOptions = [{1 to max number depending on the season number}]
     // get request based on season number?
   // season 1 episodes -> { value: 1, label: "1 - Pilot" }
@@ -34,6 +36,12 @@ const InputReferences = () => {
   const [meaning, setMeaning] = useState('');
   const [submit, setSubmit] = useState(false);
 
+  const anotherFunction = (season) => {
+    // store the formatted episodes in the episodeOptions dropdown menu
+    episodeOptions = axiosRequest(season);
+    console.log("Did this work?", episodeOptions);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -52,6 +60,7 @@ const InputReferences = () => {
       meaning: meaning,
       // screenshot: "https://some-picture-hosting-website.com/image"
     }
+    console.log({reference});
 
     // STRETCH: middleware to validate references
 
@@ -59,29 +68,41 @@ const InputReferences = () => {
     //   method: 'GET',
     //   url: 'https://project-gg.herokuapp.com/seasons/1',
     // }).then((res) => {console.log(res)}).catch(err => console.log(err));
-    axios({
-      method: 'POST',
-      url: 'https://project-gg.herokuapp.com/seasons/references/add',
-      data: {
-        seasonNumber: seasonNum.value,
-        episodeNumber: episodeNum,
-        references: reference
-      }
-    }).then((res) => {
-      console.log('maloned', res);
-    }).catch((err) => console.log(err));
 
-    // set back to default values
-    setSeasonNum(1);
-    setEpisodeNum(1);
-    setEpisodeName('');
-    setSubject('');
-    setTimestamp('');
-    setQuote('');
-    setSpeaker('');
-    setSpeakerContext('');
-    setMeaning('');
-    setSubmit('');
+
+
+    // {
+    //   seasonNumber: seasonNum.value,
+    //   episodeNumber: episodeNum,
+    //   references: reference
+    // }
+
+
+      axios({
+        method: 'POST',
+        url: 'https://project-gg.herokuapp.com/seasons/references/add',
+        data: {
+          "seasonNumber": seasonNum.value,
+          "episodeNumber": episodeNum.value,
+          "references": reference
+      }
+      }).then((res) => {
+        console.log('maloned', res);
+      }, (err) => console.log(err));
+
+      // set back to default values
+      setSeasonNum(1);
+      setEpisodeNum(1);
+      setEpisodeName('');
+      setSubject('');
+      setTimestamp('');
+      setQuote('');
+      setSpeaker('');
+      setSpeakerContext('');
+      setMeaning('');
+      setSubmit('');
+    
+    
   }
 
   return (
@@ -94,25 +115,23 @@ const InputReferences = () => {
           className="seasonSelect"
           value={seasonNum}
           options={seasonOptions}
-          onChange={(seasonNum) => setSeasonNum(seasonNum)}
+          onChange={(seasonNum) => {
+            setSeasonNum(seasonNum);
+            anotherFunction(seasonNum.value);
+          }}
           required
         />
 
         <label htmlFor="episodeNum">Episode Number</label>
-        <input
-          type="text"
-          name="episodeNum"
+        <Select
+          // name="seasonNum"
+          className="seasonSelect"
           value={episodeNum}
-          onChange={(e) => setEpisodeNum(e.target.value)}
-          required
-        />
-
-        <label htmlFor="episodeName">Episode Name</label>
-        <input
-          type="text"
-          name="episodeName"
-          value={episodeName}
-          onChange={(e) => setEpisodeName(e.target.value)}
+          options={episodeOptions}
+          onChange={(episodeNum) => {
+            setEpisodeNum(episodeNum);
+            anotherFunction(episodeNum.value);
+          }}
           required
         />
 
@@ -126,15 +145,28 @@ const InputReferences = () => {
         />
 
         <label htmlFor="timestamp">Time Stamp</label>
-        <input
-          type="text"
-          name="timestamp"
-          value={timestamp}
-          onChange={(e) => setTimestamp(e.target.value)}
-          required
-        />
+        <p>
+          <input
+            type="number"
+            name="timestamp"
+            value={timestamp}
+            // onChange={(e) => setTimestamp(e.target.value)}
+            min="0"
+            max="60"
+            required
+          /> :
+          <input
+            type="number"
+            name="timestamp"
+            value={timestamp}
+            // onChange={(e) => setTimestamp(e.target.value)}
+            min="0"
+            max="60"
+            required
+          />
+        </p>
 
-        <label htmlFor="quot">Quote</label>
+        <label htmlFor="quote">Quote</label>
         <input
           type="text"
           name="quote"
