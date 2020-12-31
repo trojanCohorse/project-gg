@@ -5,9 +5,11 @@ import InputReferences from './components/InputReferences';
 
 const App = () => {
   return (
-    <div className="App">
-      <InputReferences />      
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div className="App">
+        <Route path="/" component={InputReferences} />
+      </div>
+    </Router>
   );
 }
 

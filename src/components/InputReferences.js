@@ -55,7 +55,11 @@ const InputReferences = () => {
 
     // STRETCH: middleware to validate references
 
-    axios.post({
+    // axios({
+    //   method: 'GET',
+    //   url: 'https://project-gg.herokuapp.com/seasons/1',
+    // }).then((res) => {console.log(res)}).catch(err => console.log(err));
+    axios({
       method: 'POST',
       url: 'https://project-gg.herokuapp.com/seasons/references/add',
       data: {
@@ -65,7 +69,7 @@ const InputReferences = () => {
       }
     }).then((res) => {
       console.log('maloned', res);
-    });
+    }).catch((err) => console.log(err));
 
     // set back to default values
     setSeasonNum(1);
