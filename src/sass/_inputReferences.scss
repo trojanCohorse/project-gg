@@ -1,30 +1,72 @@
 .referencesForm {
+  width: 60vw;
   border: 2px solid black;
   padding: 20px;
+  margin: 50px auto 0;
   
   form {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr repeat(2, 2fr);
     
     h2 {
       grid-column: span 2;
     }
 
-    label, input {
-      // width: 40vw;
-      margin: 10px;
+    label, input, textarea, .seasonSelect {
+      margin: 10px 0;
     }
 
     label {
       grid-column-start: 1;
+      text-align: left;
     }
     
-    input, .seasonSelect, p {
+    input, .seasonSelect, textarea {
       grid-column: 2 / span 2;
     }
 
     input[type=submit], button {
       grid-column: 2 / span 1;
+      width: 300px;
+      padding: 15px;
+    }
+    
+    button {
+      margin-top: 50px;
+    }
+
+    fieldset {
+      grid-column: 1 / span 3;
+      border: none;
+      display: grid;
+      grid-template-columns: 1fr repeat(2, 2fr);
+      position: relative;
+
+      legend {
+        // TODO values need to be set
+        position: absolute;
+        top: 20%;
+      }
+
+      label {
+        margin-right: 10px;
+      }
+
+      input {
+        padding: 10px;
+      }
+
+      .minutes, .seconds {
+        text-align: left;
+      }
+
+      .minutes {
+        grid-column: 2;
+      }
+
+      .seconds {
+        grid-column: 3;
+      }
     }
   }
 
