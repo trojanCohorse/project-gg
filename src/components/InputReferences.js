@@ -83,7 +83,7 @@ const InputReferences = () => {
 
   return (
     <section className="referencesForm">
-      <h2>Add your reference!</h2>
+      <h2>Add Your Reference!</h2>
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
         {/* NOTE even though the Selects are required, they both have an initial value of one, and the form submits even when nothing is chosen. */}
@@ -155,14 +155,13 @@ const InputReferences = () => {
         </fieldset>
 
         <label htmlFor="quote">Quote</label>
-        <input
-          type="text"
+        <textarea
           id="quote"
           name="quote"
           value={quote}
           onChange={(e) => setQuote(e.target.value)}
           required
-        />
+          ></textarea>
 
         <label htmlFor="speaker">Speaker</label>
         <input
@@ -175,29 +174,27 @@ const InputReferences = () => {
         />
 
         <label htmlFor="speakerContext">Context</label>
-        <input
-          type="text"
+        <textarea
           id="speakerContext"
           name="speakerContext"
           value={speakerContext}
           onChange={(e) => setSpeakerContext(e.target.value)}
           required
-        />
+        ></textarea>
 
         <label htmlFor="meaning">Meaning</label>
-        <input
-          type="text"
+        <textarea
           id="meaning"
           name="meaning"
           value={meaning}
           onChange={(e) => setMeaning(e.target.value)}
           required
-        />
+        ></textarea>
 
-        {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
-        <input type="submit" value="Submit" />
         {/* STRETCH */}
         <button>Add Another Reference</button>
+        {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
+        <input type="submit" value="Submit" />
       </form>
     </section>
   );
