@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import Select from 'react-select';
 
 const axiosRequest = (seasonNum) => {
   // formatted array that has returned values from map, and then gets returned itself

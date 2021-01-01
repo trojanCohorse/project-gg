@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import axiosRequest from "./EpisodeRequest.js";
 
+// available seasons for the season number dropdown
 const seasonOptions = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
@@ -13,30 +14,23 @@ const seasonOptions = [
   { value: 7, label: "7" },
 ]
 
+// this variable will be used to store the array of episodes that correspond to the selected season number
 let episodeOptions = undefined;
-// const episodeOptions = [{1 to max number depending on the season number}]
-    // get request based on season number?
-  // season 1 episodes -> { value: 1, label: "1 - Pilot" }
-  // season 2 episodes
-  // season 3 episodes
-  // season 4 episodes
-  // season 5 episodes
-  // season 6 episodes
-  // season 7 episodes
+
 
 const InputReferences = () => {
   const [seasonNum, setSeasonNum] = useState(1);
   const [episodeNum, setEpisodeNum] = useState(1);
-  const [episodeName, setEpisodeName] = useState('');
   const [subject, setSubject] = useState('');
-  const [timestamp, setTimestamp] = useState('');
+  const [timestamp, setTimestamp] = useState({ minutes: 0, seconds: 0 });
+  const { minutes, seconds } = timestamp;
   const [quote, setQuote] = useState('');
   const [speaker, setSpeaker] = useState('');
   const [speakerContext, setSpeakerContext] = useState('');
   const [meaning, setMeaning] = useState('');
   const [submit, setSubmit] = useState(false);
 
-  const anotherFunction = (season) => {
+  const findEpisodes = (season) => {
     // store the formatted episodes in the episodeOptions dropdown menu
     episodeOptions = axiosRequest(season);
     console.log("Did this work?", episodeOptions);
@@ -44,65 +38,47 @@ const InputReferences = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // store the season number, episode number and episode name so that they can be used to check for the specific season and episode
-    // all of the other values need to be placed inside of an object
+    
+    // put the rest of the values on the form into an object that will be pushed to the episode array
       // that object will be pushed to the episodes array
-
-    // put in object to push to the episode array
     const reference = {
       // id: 1, --> Array.length ; added in backend
       subject: subject,
-      timestamp: timestamp,
+      timestamp: `${minutes}:${seconds < 10 ? "0" + seconds: seconds}`,
       quote: quote,
       speaker: speaker,
       context: speakerContext,
       meaning: meaning,
       // screenshot: "https://some-picture-hosting-website.com/image"
     }
-    console.log({reference});
-
-    // STRETCH: middleware to validate references
-
-    // axios({
-    //   method: 'GET',
-    //   url: 'https://project-gg.herokuapp.com/seasons/1',
-    // }).then((res) => {console.log(res)}).catch(err => console.log(err));
-
-
-
-    // {
-    //   seasonNumber: seasonNum.value,
-    //   episodeNumber: episodeNum,
-    //   references: reference
-    // }
-
-
-      axios({
-        method: 'POST',
-        url: 'https://project-gg.herokuapp.com/seasons/references/add',
-        data: {
-          "seasonNumber": seasonNum.value,
-          "episodeNumber": episodeNum.value,
-          "references": reference
-      }
-      }).then((res) => {
-        console.log('maloned', res);
-      }, (err) => console.log(err));
-
-      // set back to default values
-      setSeasonNum(1);
-      setEpisodeNum(1);
-      setEpisodeName('');
-      setSubject('');
-      setTimestamp('');
-      setQuote('');
-      setSpeaker('');
-      setSpeakerContext('');
-      setMeaning('');
-      setSubmit('');
+    console.log(reference);
     
-    
+    // use the season number and episode number so that they can be used to check for the specific season and episode
+    axios({
+      method: 'POST',
+      url: 'https://project-gg.herokuapp.com/seasons/add',
+      data: {
+        "seasonNumber": seasonNum.value,
+        "episodeNumber": episodeNum.value,
+        "references": reference
+    }
+    }).then((res) => {
+      console.log('maloned', res);
+    }, (err) => console.log(err));
+
+    // set back to default values
+    setSeasonNum(1);
+    setEpisodeNum(1);
+    setSubject('');
+    setTimestamp({ minutes: 0, seconds: 0 });
+    setQuote('');
+    setSpeaker('');
+    setSpeakerContext('');
+    setMeaning('');
+    setSubmit('');
+
+    // TODO better UI; only inform the user that the reference was submitted if the post request was successful
+    alert("Reference Submitted!");
   }
 
   return (
@@ -110,6 +86,7 @@ const InputReferences = () => {
       <h2>Add your reference!</h2>
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
+        {/* NOTE even though the Selects are required, they both have an initial value of one, and the form submits even when nothing is chosen. */}
         <Select
           id="seasonNum"
           name="seasonNum"
@@ -118,7 +95,7 @@ const InputReferences = () => {
           options={seasonOptions}
           onChange={(seasonNum) => {
             setSeasonNum(seasonNum);
-            anotherFunction(seasonNum.value);
+            findEpisodes(seasonNum.value);
           }}
           required
         />
@@ -132,7 +109,7 @@ const InputReferences = () => {
           options={episodeOptions}
           onChange={(episodeNum) => {
             setEpisodeNum(episodeNum);
-            anotherFunction(episodeNum.value);
+            findEpisodes(episodeNum.value); // TODO check to see if this is needed once the 503 error is gone
           }}
           required
         />
@@ -155,8 +132,8 @@ const InputReferences = () => {
               type="number"
               id="minutes"
               name="minutes"
-              // value={timestamp}
-              // onChange={(e) => setTimestamp(e.target.value)}
+              value={minutes}
+              onChange={(e) => setTimestamp({...timestamp, minutes: e.target.value })}
               min="0"
               max="60"
               required
@@ -168,10 +145,10 @@ const InputReferences = () => {
               type="number"
               id="seconds"
               name="seconds"
-              // value={timestamp}
-              // onChange={(e) => setTimestamp(e.target.value)}
+              value={seconds}
+              onChange={(e) => setTimestamp({ ...timestamp, seconds: e.target.value})}
               min="0"
-              max="60"
+              max="59"
               required
             />
           </div>
@@ -217,6 +194,7 @@ const InputReferences = () => {
           required
         />
 
+        {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
         <input type="submit" value="Submit" />
         {/* STRETCH */}
         <button>Add Another Reference</button>
