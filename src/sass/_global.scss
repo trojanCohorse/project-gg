@@ -1,22 +1,26 @@
 // stripping styles
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 // FONT VARIABLES
 
 body {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 
-    h2 {
-        font-size: 3rem;
-        margin-bottom: 50px;
-    }
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+}
+
+ul {
+  list-style: none;
 }
 
 // COLOUR VARIABLES
