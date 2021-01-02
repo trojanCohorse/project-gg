@@ -19,39 +19,40 @@ const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
+        <h1>Gilmore girls</h1>
         <header>
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             render={() => <Navbar showSeasons={showSeasons} />}
           />
         </header>
-        {/* <Route 
-          exact path="/" 
-          render={() => <SeasonDisplay season={1} />} 
+        {/* <Route
+          exact path="/"
+          render={() => <SeasonDisplay season={1} />}
         /> */}
-        <Route 
-          exact path="/season/:seasonNum" 
-          render={() => <SeasonDisplay />} 
+        <Route
+          exact path="/season/:seasonNum"
+          render={() => <SeasonDisplay />}
         />
-        {/* <Route 
-          exact path="/season3" 
-          render={() => <SeasonDisplay season={3} />} 
+        {/* <Route
+          exact path="/season3"
+          render={() => <SeasonDisplay season={3} />}
         />
-        <Route 
-          exact path="/season4" 
-          render={() => <SeasonDisplay season={4} />} 
+        <Route
+          exact path="/season4"
+          render={() => <SeasonDisplay season={4} />}
         />
-        <Route 
-          exact path="/season5" 
-          render={() => <SeasonDisplay season={5} />} 
+        <Route
+          exact path="/season5"
+          render={() => <SeasonDisplay season={5} />}
         />
-        <Route 
-          exact path="/season6" 
-          render={() => <SeasonDisplay season={6} />} 
+        <Route
+          exact path="/season6"
+          render={() => <SeasonDisplay season={6} />}
         />
-        <Route 
-          exact path="/season7" 
-          render={() => <SeasonDisplay season={7} />} 
+        <Route
+          exact path="/season7"
+          render={() => <SeasonDisplay season={7} />}
         /> */}
         <Route path="/input" component={InputReferences} />
       </div>

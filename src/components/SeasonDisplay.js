@@ -48,7 +48,7 @@ const SeasonDisplay = ( props ) => {
   
   return (  
     <div>
-      <h1>Season {seasonNum}</h1>
+      <h2>Season {seasonNum}</h2>
       <ul>
         {
           typeof seasonsObj[seasonNum] !== 'undefined' && (
@@ -56,8 +56,8 @@ const SeasonDisplay = ( props ) => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
                 <li key={episodeNumber}>
-                  <h2>{name}</h2>
-                  <h3> Episode {episodeNumber}</h3>
+                  <h3>{name}</h3>
+                  <h4> Episode {episodeNumber}</h4>
                   <p>Image Goes Here</p>
                   <Link to="/references">See References</Link>
                 </li>
