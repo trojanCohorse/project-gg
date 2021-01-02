@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-=======
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, useParams } from "react-router-dom";
->>>>>>> 213d17e38fdf65d1d255a05eca54d6f3fe409d25
 import './sass/App.scss';
 import InputReferences from './components/InputReferences.js';
 import Navbar from "./components/Navbar.js";
