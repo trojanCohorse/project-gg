@@ -11,6 +11,7 @@ const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
+        <h1>Gilmore girls</h1>
         <header>
           <Route 
             path="/" 

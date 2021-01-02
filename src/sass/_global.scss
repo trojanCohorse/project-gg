@@ -9,13 +9,29 @@ html {
 }
 
 // FONT VARIABLES
+@font-face {
+  font-family: 'Sackers Antique';
+  src: url(./SackersAntiqueRomanSolidAT.otf);
+}
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Source+Serif+Pro:wght@600&display=swap');
+// font-family: 'PT Serif', serif;
+// font-family: 'Source Serif Pro', serif;
+$sackers: 'Sackers Antique';
+$PTSerif: 'PT Serif';
+$SourceSerif: 'Source Serif Pro';
+
 
 body {
   font-size: 1.6rem;
+  h1 {
+
+    font-family: $sackers;
+  }
 
   h2 {
     font-size: 3rem;
     margin-bottom: 50px;
+    font-family: $PTSerif;
   }
 }
 
