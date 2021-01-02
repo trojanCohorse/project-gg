@@ -3,35 +3,33 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Navbar = () => {
-  const [seasonsArr, setSeasonsArr] = useState([]);
-  const [storedSeasons, setStoredSeasonso] = useState([1]);
+  const [seasonsObj, setSeasonsObj] = useState({});
   const [showSeason, setShowSeason] = useState(1);
 
   // when the page gets loaded, initialize first season
   // https://project-gg.herokuapp.com/seasons/1
+  // http://127.0.0.1:5000/seasons/1
   useEffect(() => {
-    axios.get({
+    axios({
       method: 'GET',
-      url: `https://project-gg.herokuapp.com/seasons/1`,
-      responseType: "json"
-    }).then((res) => {
-      setSeasonsArr([{1: res}]);
-    })
+      url: 'https://project-gg.herokuapp.com/seasons/1'
+    }).then(res => setSeasonsObj({ 1: [res.data[0]] }))
+      .catch(err => console.log(err));
   }, []);
   // https://project-gg.herokuapp.com/seasons/${name}
+  
   const changeSeason = (e) => {
     const name = e.target.name;
     setShowSeason(name);
     // check to see if value is in the storedSeasons array and update showSeason to the variable
-    if (storedSeasons.filter(item => name === item).length === 0) {
-      axios.get({
+    if (!seasonsObj[name]) {
+      axios({
         method: 'GET',
         url: `https://project-gg.herokuapp.com/seasons/${name}`
       }).then((res) => {
-        setSeasonsArr([...seasonsArr, {[name]: res}]);
-        console.log(seasonsArr);
+        setSeasonsObj({...seasonsObj,  [name]: res.data[0] });
       })
-    } 
+    }
   }
 
   return (
