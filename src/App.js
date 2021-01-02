@@ -11,12 +11,15 @@ const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
-        <h1>Gilmore girls</h1>
         <header>
-          <Route 
-            path="/" 
-            component={Navbar} 
-          />
+          <div className="wrapper">
+            <Route 
+              path="/" 
+              component={Navbar} 
+              />
+            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+            <h1>Gilmore girls API</h1>
+          </div>
         </header>
         <Route 
           exact path="/season/:seasonNum" 

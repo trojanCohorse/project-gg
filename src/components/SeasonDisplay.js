@@ -46,13 +46,13 @@ const SeasonDisplay = ( props ) => {
   return (  
     <div>
       <h2>Season {seasonNum}</h2>
-      <ul>
+      <ul className="episodeList wrapper">
         {
           typeof seasonsObj[seasonNum] !== 'undefined' && (
             seasonsObj[seasonNum][0].episodes.map((episode) => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
-                <li key={episodeNumber}>
+                <li key={episodeNumber} className="episodeCard">
                   <h3>{name}</h3>
                   <h4> Episode {episodeNumber}</h4>
 
