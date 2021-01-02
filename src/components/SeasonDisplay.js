@@ -28,13 +28,13 @@ const SeasonDisplay = () => {
   return (  
     <div>
       <h2>Season {showSeason}</h2>
-      <ul>
+      <ul className="episodeList wrapper">
         {
           typeof seasonsObj[showSeason] !== 'undefined' && (
             seasonsObj[showSeason][0].episodes.map((episode) => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
-                <li key={episodeNumber}>
+                <li key={episodeNumber} className="episodeCard">
                   <h3>{name}</h3>
                   <h4> Episode {episodeNumber}</h4>
 

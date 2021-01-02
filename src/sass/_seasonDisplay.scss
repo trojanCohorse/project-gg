@@ -1,0 +1,15 @@
+
+
+.episodeList {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    border: 1px solid black;
+
+    .episodeCard {
+        width: calc((100% / 3) - 10px);
+        margin: 10px 0;
+        border: 1px solid blue;
+    }
+}
