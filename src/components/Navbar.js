@@ -30,6 +30,9 @@ const Navbar = () => {
         </div>
         <div className="navLinks">
           <li>
+            <Link to="/approve">Approve Ref</Link>
+          </li>
+          <li>
             <Link to="/input">New Reference</Link>
           </li>
           <li>

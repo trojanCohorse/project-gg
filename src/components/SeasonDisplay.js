@@ -25,7 +25,7 @@ const SeasonDisplay = () => {
     }
   }, [showSeason]);
 
-  return (  
+  return (
     <div>
       <h2>Season {showSeason}</h2>
       <ul className="episodeList wrapper">

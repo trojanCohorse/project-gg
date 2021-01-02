@@ -5,6 +5,7 @@ import InputReferences from './components/InputReferences.js';
 import Navbar from "./components/Navbar.js";
 import SeasonDisplay from "./components/SeasonDisplay";
 import Episode from "./components/Episode";
+import NewReferencesDisplay from "./components/NewReferencesDisplay"
 
 const App = () => {
   return (
@@ -15,6 +16,10 @@ const App = () => {
             <Route 
               path="/" 
               component={Navbar} 
+              />
+            <Route 
+              path="/approve"
+              component={NewReferencesDisplay}
               />
             {/* REVIEW title should reflect the purpose of our app (copyright!) */}
             <h1>Gilmore girls API</h1>
