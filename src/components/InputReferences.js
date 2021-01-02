@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import axiosRequest from "./EpisodeRequest.js";
+import axiosRequest from "./episodeRequest.js";
 
 // available seasons for the season number dropdown
 const seasonOptions = [
