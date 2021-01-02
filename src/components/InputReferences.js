@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import axiosRequest from "./EpisodeRequest.js";
+import axiosRequest from './episodeReq.js';
 
 // available seasons for the season number dropdown
 const seasonOptions = [
   { value: 1, label: "1" },
-  { value: 2, label: "2" },
+  { value: 2, label: "2" }, 
   { value: 3, label: "3" },
   { value: 4, label: "4" },
   { value: 5, label: "5" },
@@ -23,6 +23,7 @@ const InputReferences = () => {
   const [episodeNum, setEpisodeNum] = useState(1);
   const [subject, setSubject] = useState('');
   const [timestamp, setTimestamp] = useState({ minutes: 0, seconds: 0 });
+  // destructure timestamp
   const { minutes, seconds } = timestamp;
   const [quote, setQuote] = useState('');
   const [speaker, setSpeaker] = useState('');
