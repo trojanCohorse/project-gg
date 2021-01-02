@@ -2,54 +2,36 @@ import { useState, useEffect, } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const SeasonDisplay = ( props ) => {
+const SeasonDisplay = () => {
   const { seasonNum } = useParams();
+
   const [seasonsObj, setSeasonsObj] = useState({});
   const [showSeason, setShowSeason] = useState(seasonNum);
+  // line below is to prevent rerenders
+  if (showSeason !== seasonNum) setShowSeason(seasonNum);
 
   // when the page gets loaded, initialize first season
   // https://project-gg.herokuapp.com/seasons/1
   // http://127.0.0.1:5000/seasons/1
   useEffect(() => {
-    if (typeof seasonsObj[seasonNum] === 'undefined') {
+    if (typeof seasonsObj[showSeason] === 'undefined') {
       axios({
         method: 'GET',
-        url: `https://project-gg.herokuapp.com/seasons/${seasonNum}`
+        url: `https://project-gg.herokuapp.com/seasons/${showSeason}`
       }).then(res => {
-        setSeasonsObj({ [seasonNum]: [res.data[0]] })
+        console.log('gotted');
+        setSeasonsObj({...seasonsObj, [showSeason]: [res.data[0]] })
       }).catch(err => console.log(err));
     }
-  }, []);
-  // https://project-gg.herokuapp.com/seasons/${name}
+  }, [showSeason]);
 
-  // const changeSeason = (e) => {
-  //   const name = e.target.name;
-  //   setShowSeason(name);
-  //   // check to see if value is in the storedSeasons array and update showSeason to the variable
-  //   if (!seasonsObj[name]) {
-  //     axios({
-  //       method: 'GET',
-  //       url: `https://project-gg.herokuapp.com/seasons/${name}`
-  //     }).then((res) => {
-  //       setSeasonsObj({ ...seasonsObj, [name]: res.data[0] });
-  //       console.log(seasonsObj);
-  //     })
-  //   } else {
-  //   }
-  // } 
-
-
-  // seasonsObj[1][0].episodes
-  // if (typeof seasonsObj[1] !== 'undefined') console.log(seasonsObj[1][0].episodes);
-  // console.log(props.match.params.seasonNumber);
-  
   return (  
     <div>
-      <h2>Season {seasonNum}</h2>
+      <h2>Season {showSeason}</h2>
       <ul>
         {
-          typeof seasonsObj[seasonNum] !== 'undefined' && (
-            seasonsObj[seasonNum][0].episodes.map((episode) => {
+          typeof seasonsObj[showSeason] !== 'undefined' && (
+            seasonsObj[showSeason][0].episodes.map((episode) => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
                 <li key={episodeNumber}>
@@ -57,7 +39,7 @@ const SeasonDisplay = ( props ) => {
                   <h4> Episode {episodeNumber}</h4>
 
                   <p>Image Goes Here</p>
-                  <Link to={`/season/${seasonNum}/episode/${episodeNumber}`} >See References</Link>
+                  <Link to={`/season/${showSeason}/episode/${episodeNumber}`} >See References</Link>
                 </li>
               )
             })
