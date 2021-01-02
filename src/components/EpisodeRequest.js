@@ -8,13 +8,6 @@ const axiosRequest = (seasonNum) => {
     method: 'GET',
     url: `https://project-gg.herokuapp.com/seasons/${seasonNum}`,
     responseType: "json"
-    // data: {
-    //   episodeNumber: episodeNum,
-    //   episodeName: name
-    // },
-    // params: {
-    //   seasonNumber: seasonNum.value,
-    // }
   }).then((res) => {
     const episodesArr =res.data[0].episodes;
     
