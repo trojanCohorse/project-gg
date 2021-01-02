@@ -1,7 +1,13 @@
-import { Route } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './LoginButton.js';
+import LogoutButton from './LogoutButton.js'
 
 const Navbar = () => {
+  const { user, isAuthenticated } = useAuth0();
+  if (isAuthenticated) {
+    console.log(user);
+  }
   return (
     <nav>
       <ul>
@@ -36,7 +42,7 @@ const Navbar = () => {
             <Link to="/input">New Reference</Link>
           </li>
           <li>
-            <Link to="/">Log In</Link>
+            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
           </li>
         </div>
       </ul>
