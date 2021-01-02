@@ -4,17 +4,14 @@ import axios from 'axios';
 
 const SeasonDisplay = ( props ) => {
   const { seasonNum } = useParams();
-  const seasonNumber = Number(seasonNum);
-  // console.log(seasonNumber);
   const [seasonsObj, setSeasonsObj] = useState({});
-  const [showSeason, setShowSeason] = useState(seasonNumber);
+  const [showSeason, setShowSeason] = useState(seasonNum);
 
   // when the page gets loaded, initialize first season
   // https://project-gg.herokuapp.com/seasons/1
   // http://127.0.0.1:5000/seasons/1
   useEffect(() => {
     if (typeof seasonsObj[seasonNum] === 'undefined') {
-      console.log(seasonNumber);
       axios({
         method: 'GET',
         url: `https://project-gg.herokuapp.com/seasons/${seasonNum}`
@@ -43,7 +40,7 @@ const SeasonDisplay = ( props ) => {
 
 
   // seasonsObj[1][0].episodes
-  if (typeof seasonsObj[1] !== 'undefined') console.log(seasonsObj[1][0].episodes);
+  // if (typeof seasonsObj[1] !== 'undefined') console.log(seasonsObj[1][0].episodes);
   // console.log(props.match.params.seasonNumber);
   
   return (  
@@ -55,11 +52,11 @@ const SeasonDisplay = ( props ) => {
             seasonsObj[seasonNum][0].episodes.map((episode) => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
-                <li key={episodeNumber}>
+                <li key={episodeNumber} className="episodeCard">
                   <h2>{name}</h2>
                   <h3> Episode {episodeNumber}</h3>
                   <p>Image Goes Here</p>
-                  <Link to="/references">See References</Link>
+                  <Link to={`/season/${seasonNum}/episode/${episodeNumber}`} >See References</Link>
                 </li>
               )
             })
