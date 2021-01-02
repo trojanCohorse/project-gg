@@ -5,7 +5,6 @@ import InputReferences from './components/InputReferences.js';
 import Navbar from "./components/Navbar.js";
 import SeasonDisplay from "./components/SeasonDisplay";
 import Episode from "./components/Episode";
-import axios from 'axios';
 
 const App = () => {
   return (
