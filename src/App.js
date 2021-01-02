@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useParams } from "react-router-dom";
 import './sass/App.scss';
 import InputReferences from './components/InputReferences.js';
 import Navbar from "./components/Navbar.js";
@@ -15,6 +15,7 @@ const App = () => {
     setSeason(season);
   }
 
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
@@ -24,14 +25,34 @@ const App = () => {
             render={() => <Navbar showSeasons={showSeasons} />}
           />
         </header>
-        <Route 
-          exact path="/seasonOne" 
+        {/* <Route 
+          exact path="/" 
           render={() => <SeasonDisplay season={1} />} 
+        /> */}
+        <Route 
+          exact path="/season/:seasonNum" 
+          render={() => <SeasonDisplay />} 
+        />
+        {/* <Route 
+          exact path="/season3" 
+          render={() => <SeasonDisplay season={3} />} 
         />
         <Route 
-          exact path="/seasonTwo" 
-          render={() => <SeasonDisplay season={2} />} 
+          exact path="/season4" 
+          render={() => <SeasonDisplay season={4} />} 
         />
+        <Route 
+          exact path="/season5" 
+          render={() => <SeasonDisplay season={5} />} 
+        />
+        <Route 
+          exact path="/season6" 
+          render={() => <SeasonDisplay season={6} />} 
+        />
+        <Route 
+          exact path="/season7" 
+          render={() => <SeasonDisplay season={7} />} 
+        /> */}
         <Route path="/input" component={InputReferences} />
       </div>
     </Router>
