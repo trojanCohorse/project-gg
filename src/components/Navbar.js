@@ -1,37 +1,31 @@
-import { useState, useEffect, Route } from 'react';
+import { Route } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ showSeasons }) => {
-  const [showSeason, setShowSeason] = useState(1);
-
-  const changeSeason = (e) => {
-    setShowSeason(e.target.name);
-  }
-
+const Navbar = () => {
   return (
     <nav>
       <ul>
         <div className="seasons">
           <li>
-            <Link to="/season/1" name="1" onClick={changeSeason}>Season 1</Link>
+            <Link to="/season/1" >Season 1</Link>
           </li>
           <li>
-            <Link to="/season/2" name="2" onClick={changeSeason}>Season 2</Link>
+            <Link to="/season/2" >Season 2</Link>
           </li>
           <li>
-            <Link to="/season/3" name="3" onClick={changeSeason}>Season 3</Link>
+            <Link to="/season/3" >Season 3</Link>
           </li>
           <li>
-            <Link to="/season/4" name="4" onClick={changeSeason}>Season 4</Link>
+            <Link to="/season/4" >Season 4</Link>
           </li>
           <li>
-            <Link to="/season/5" name="5" onClick={changeSeason}>Season 5</Link>
+            <Link to="/season/5" >Season 5</Link>
           </li>
           <li>
-            <Link to="/season/6" name="6" onClick={changeSeason}>Season 6</Link>
+            <Link to="/season/6" >Season 6</Link>
           </li>
           <li>
-            <Link to="/season/7" name="7" onClick={changeSeason}>Season 7</Link>
+            <Link to="/season/7" >Season 7</Link>
           </li>
         </div>
         <div className="navLinks">
@@ -43,9 +37,6 @@ const Navbar = ({ showSeasons }) => {
           </li>
         </div>
       </ul>
-
-
-      
     </nav>
   );
 }
