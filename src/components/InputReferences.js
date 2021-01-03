@@ -55,7 +55,7 @@ const InputReferences = () => {
     // use the season number and episode number so that they can be used to check for the specific season and episode
     axios({
       method: 'POST',
-      url: 'https://project-gg.herokuapp.com/seasons/add',
+      url: 'https://cors-anywhere.herokuapp.com/https://project-gg.herokuapp.com/seasons/add',
       data: {
         "seasonNumber": seasonNum.value,
         "episodeNumber": episodeNum.value,
@@ -105,8 +105,8 @@ const InputReferences = () => {
             borderRadius: 5,
             colors: {
               ...theme.colors,
-              primary25: '#d479ff',
-              primary: '#3a1879',
+              primary25: '#dff3e3',
+              primary: '#142c53',
             }
           })}
           required
@@ -128,8 +128,8 @@ const InputReferences = () => {
             borderRadius: 5,
             colors: {
               ...theme.colors,
-              primary25: '#d479ff',
-              primary: '#3a1879',
+              primary25: '#dff3e3',
+              primary: '#142c53',
             }
           })}
           required

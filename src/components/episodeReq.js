@@ -10,7 +10,6 @@ const axiosRequest = (seasonNum) => {
     responseType: "json"
   }).then((res) => {
     const episodesArr =res.data[0].episodes;
-    
 
     episodesArr.map(episode => {
       const formattedEpisode = {

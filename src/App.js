@@ -11,41 +11,37 @@ import NewReferencesDisplay from "./components/NewReferencesDisplay"
 const App = () => {
   return (
     <Auth0Provider
-    domain="codedkhan.us.auth0.com"
-    clientId="1fAqEsZEmLK7Lfrh0PP01H8YbIPCs1q0"
-    redirectUri={window.location.origin}>
-    <Router basename={process.env.PUBLIC_URL}>
-      <div className="App">
-        <header>
-          <div className="wrapper">
-            <Route 
-              path="/" 
-              component={Navbar} 
+      domain="codedkhan.us.auth0.com"
+      clientId="1fAqEsZEmLK7Lfrh0PP01H8YbIPCs1q0"
+      redirectUri={window.location.origin}>
+      <Router basename={process.env.PUBLIC_URL}>
+        <div className="App">
+          <header>
+            <div className="wrapper">
+              <Route 
+                path="/" 
+                component={Navbar} 
+                />
+              {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+              <h1>Gilmore girls API</h1>
+              <img src="./coffee.png" alt="Coffee Cup"/>
+              <Route 
+                path="/approve"
+                component={NewReferencesDisplay}
               />
-            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
-            {/* TODO coffee beside h1 */}
-            <h1>Gilmore girls API</h1>
-            <img src="./coffee.png" alt="Coffee Cup"/>
+            </div>
+          </header>
+          <main>
             <Route 
-              path="/approve"
-              component={NewReferencesDisplay}
+              exact path="/season/:seasonNum" 
+              component={SeasonDisplay} 
             />
-          </div>
-        </header>
-        <main>
-          <Route 
-            exact path="/season/:seasonNum" 
-            component={SeasonDisplay} 
-          />
-          <Route
-            exact path="/season/:seasonNum/episode/:episodeNum"
-            component={Episode}
-          />
-          <Route path="/input" component={InputReferences} />
-        </main>
-      </div>
-    </Router>
-  </Auth0Provider>
+            <Route path="/input" component={InputReferences} />
+          </main>
+          <footer>Created by Asif, Boris, Caitlin, and Greg</footer>
+        </div>
+      </Router>
+    </Auth0Provider>
   );
 }
 

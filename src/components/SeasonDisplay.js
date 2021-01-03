@@ -1,55 +1,82 @@
 import { useState, useEffect, } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Route, Link, useParams, Switch, useRouteMatch } from 'react-router-dom';
 import axios from 'axios';
+import Episode from './Episode.js';
+import Season from './Season.js';
 
 const SeasonDisplay = () => {
   const { seasonNum } = useParams();
+  const { url } = useRouteMatch();
+  const [episodeObj, setEpisodeObj] = useState({});
+  const [episodeNum, setEpisodeNum] = useState(1);
+
+  // useEffect(() => {
+  //   if (!episodeObj[seasonNum]) {
+  //     getEpisode();
+  //   } else if (!episodeObj[seasonNum][episodeNum]) {
+  //     getEpisode();
+  //   }
+  // }, [episodeNum])
+
+  const getEpisodeAxios = async () => {
+    return await axios.get(`https://project-gg.herokuapp.com/seasons/${seasonNum}/episodes/${episodeNum}`)
+      .then(res => {
+        const newEpisodeObj = episodeObj;
+        newEpisodeObj[seasonNum] = { [episodeNum]: res.data[0] };
+        setEpisodeObj(newEpisodeObj);
+        console.log(res);
+        return res.data[0];
+      })
+      .catch(err => console.log('Err: ', err));
+  }
 
   const [seasonsObj, setSeasonsObj] = useState({});
   const [showSeason, setShowSeason] = useState(seasonNum);
-  // line below is to prevent rerenders
-  if (showSeason !== seasonNum) setShowSeason(seasonNum);
+  if (showSeason !== seasonNum) setShowSeason(seasonNum); // this is to prevent rerenders
 
-  // when the page gets loaded, initialize first season
-  // https://project-gg.herokuapp.com/seasons/1
-  // http://127.0.0.1:5000/seasons/1
   useEffect(() => {
     if (typeof seasonsObj[showSeason] === 'undefined') {
       axios({
         method: 'GET',
         url: `https://project-gg.herokuapp.com/seasons/${showSeason}`
       }).then(res => {
-        console.log('gotted');
+        // console.log('gotted');
         setSeasonsObj({...seasonsObj, [showSeason]: [res.data[0]] })
       }).catch(err => console.log(err));
     }
   }, [showSeason]);
 
+  const changeEpisodeNum = (num) => {
+    setEpisodeNum(num);
+    return num;
+  }
 
-  return (  
-    <section className="seasons">
-      <h2>Season {showSeason}</h2>
-      <ul className="episodeList wrapper">
-        {
-          typeof seasonsObj[showSeason] !== 'undefined' && (
-            seasonsObj[showSeason][0].episodes.map((episode) => {
-              const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
-              return (
-                <li key={episodeNumber} className="episodeCard">
-                  <div>
-                    <h3>{name}</h3>
-                    <h4> Episode {episodeNumber}</h4>
-                  </div>
+  const getEpisode = async () => {
+    console.log(episodeNum);
+    if (!episodeObj[seasonNum]) {
+      const result = await getEpisodeAxios();
+      console.log({result});
+      return result;
+    } else if (!episodeObj[seasonNum][episodeNum]) {
+      const result = await getEpisodeAxios();
+      console.log({result});
+      return result;
+    }
+    return episodeObj[seasonNum][episodeNum];
+  }
 
-                  <p>Image Goes Here</p>
-                  <Link to={`/season/${showSeason}/episode/${episodeNumber}`} >See References</Link>
-                </li>
-              )
-            })
-          )
-        }
-      </ul>
-    </section>
+  return (
+    <div>
+      <p>this is where it goes...</p>
+      <Switch>
+        <Route exact path={`${url}`} render={() => (
+          <Season season={seasonsObj[showSeason]} />
+        )} />
+        <Route path={`${url}/episode/:episodeNum`} render={() => (
+          <Episode getEpisode={getEpisode} changeEpisodeNum={changeEpisodeNum} />
+        )} />
+      </Switch>
+    </div>
   )
 }
 
