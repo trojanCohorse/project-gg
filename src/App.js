@@ -25,10 +25,6 @@ const App = () => {
               {/* REVIEW title should reflect the purpose of our app (copyright!) */}
               <h1>Gilmore girls API</h1>
               <img src="../coffee.png" alt="Coffee Cup"/>
-              <Route 
-                path="/approve"
-                component={NewReferencesDisplay}
-              />
             </div>
           </header>
           <main>
@@ -37,6 +33,10 @@ const App = () => {
               component={SeasonDisplay} 
             />
             <Route path="/input" component={InputReferences} />
+            <Route 
+              path="/approve"
+              component={NewReferencesDisplay}
+            />
           </main>
           <footer>Created by Asif, Boris, Caitlin, and Greg</footer>
         </div>

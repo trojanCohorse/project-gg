@@ -4,12 +4,18 @@ import postRefToDb from './referencePost.js';
 
 const NewReferencesDisplay = ()=> {
   const [ approvalData, setApprovalData ] = useState([]);
+  // state for expanding the quote, context, and meaning paragraphs for when they exceed a certain character limit
+  const [readMore, setReadMore] = useState(false);
   
   useEffect(() => {
     axios({
       method: 'GET',
       url: `https://project-gg.herokuapp.com/seasons/approve`
     }).then(res => {
+      const input = res.data.sort((a, b) => a.seasonNumber - b.seasonNumber);
+      console.log(input);
+      const inputSorted = input.sort((a, b) => a.episodeNumber - b.episodeNumber);
+      console.log(inputSorted);
       console.log('Stuff to approve', res.data);
       setApprovalData(res.data);
       console.log(approvalData);
@@ -18,29 +24,51 @@ const NewReferencesDisplay = ()=> {
   console.log('Initial log');
 
   return(
-    <div>
+    <section className="newRefs">
+      <h2>References Awaiting Approval</h2>
       {
         approvalData.map((item, episodeIndex) => {
           return (
-            <article key={episodeIndex}>
+
+            <div key={episodeIndex} className="wrapper">
               <h3>Season: {item.seasonNumber}</h3>
-              <h3>Season: {item.episodeNumber}</h3>
-              {
-                item.references.map((reference, i) => {
-                  return (
-                    <article key={i}>
-                      <p>Subject: {reference.subject}</p>
-                      <p>Timestamp: {reference.timestamp}</p>
-                      <p>Quote: {reference.quote}</p>
-                      <p>Speaker: {reference.speaker}</p>
-                      <p>Context: {reference.context}</p>
-                      <p>Meaning: {reference.meaning}</p>
-                      <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, item.seasonNumber, item.episodeNumber, i) }>Approve</button>
-                    </article>
-                  )
-                })
-              }
-            </article>
+              <h4>Episode: {item.episodeNumber}</h4>
+              <div className="episodeContainer">
+                {
+                  item.references.map((reference, i) => {
+                    return (
+                      <article key={i} className="episodeRef">
+                        <div className="entryLine">
+                          <h5>Subject:</h5>
+                          <p className="scroll">{reference.subject}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Time Stamp:</h5>
+                          <p>{reference.timestamp}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Quote:</h5>
+                          <p className="scroll">{reference.quote}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Speaker:</h5>
+                          <p className="scroll">{reference.speaker}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Context:</h5>
+                          <p className="scroll">{reference.context}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Meaning:</h5>
+                          <p className="scroll">{reference.meaning}</p>
+                        </div>
+                        <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, item.seasonNumber, item.episodeNumber, i) }>Approve</button>
+                      </article>
+                    )
+                  })
+                }
+              </div>
+            </div>
           )
         })
       }
@@ -64,7 +92,7 @@ const NewReferencesDisplay = ()=> {
           </article>
         )
       })} */}
-    </div>
+    </section>
   );
 }
 

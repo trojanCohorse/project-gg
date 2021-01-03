@@ -67,7 +67,7 @@ const SeasonDisplay = () => {
 
   return (
     <div>
-      <p>this is where it goes...</p>
+      <h2>Season {seasonNum}</h2>
       <Switch>
         <Route exact path={`${url}`} render={() => (
           <Season season={seasonsObj[showSeason]} />

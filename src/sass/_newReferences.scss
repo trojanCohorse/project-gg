@@ -1,0 +1,82 @@
+.newRefs {
+
+    h3, h4 {
+        background: $colour6;
+        font-family: $subHeading;
+    }
+    
+    h3 {
+        font-size: 3rem;
+        padding-top: 10px;
+    }
+
+    h4 {
+        font-size: 2.5rem;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.episodeContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    padding: 25px 0;
+
+    .episodeRef {
+        background: $colour4;
+        max-width: 100%;
+        border-radius: 5px;
+        color: $colour6;
+        padding: 20px;
+        overflow: hidden;
+        
+        h5, p {
+            display: inline-block;
+            text-align: left;
+        }
+
+        h5 {
+            background: $colour3;
+            width: calc(30% - 5px);
+            color: $colour1;
+            padding: 10px;
+            margin-right: 5px;
+        }
+
+        p {
+            width: 70%;
+        }
+
+        .scroll {
+            height: 20px;
+            overflow-x: wrap;
+            overflow-y: scroll;
+        }
+
+        .entryLine {
+            width: 100%;
+        }
+
+        button {
+            display: inline-block;
+            background: $colour6;
+            width: 250px;
+            font-family: inherit;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $colour3;
+            border-radius: 5px;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px auto 0;
+
+            &:hover, &:focus {
+                background: $colour2;
+                color: $colour3;
+            }
+        }
+    }
+}
