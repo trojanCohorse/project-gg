@@ -83,9 +83,9 @@ const InputReferences = () => {
   }
 
   return (
-    <section className="referencesForm">
+    <section >
       <h2>Add Your Reference!</h2>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form action="submit" className="referencesForm" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
         {/* NOTE even though the Selects are required, they both have an initial value of one, and the form submits even when nothing is chosen. */}
         <Select
@@ -98,6 +98,15 @@ const InputReferences = () => {
             setSeasonNum(seasonNum);
             findEpisodes(seasonNum.value);
           }}
+          theme={theme => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#d479ff',
+              primary: '#3a1879',
+            }
+          })}
           required
         />
 
@@ -112,6 +121,15 @@ const InputReferences = () => {
             setEpisodeNum(episodeNum);
             findEpisodes(episodeNum.value); // TODO check to see if this is needed once the 503 error is gone
           }}
+          theme={theme => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#d479ff',
+              primary: '#3a1879',
+            }
+          })}
           required
         />
 
@@ -192,10 +210,12 @@ const InputReferences = () => {
           required
         ></textarea>
 
-        {/* STRETCH */}
-        <button>Add Another Reference</button>
-        {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
-        <input type="submit" value="Submit" />
+        <div className="buttons">
+          {/* STRETCH */}
+          <button>Add Another Reference</button>
+          {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
+          <input type="submit" value="Submit" />
+        </div>
       </form>
     </section>
   );

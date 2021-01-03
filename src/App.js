@@ -17,18 +17,22 @@ const App = () => {
               component={Navbar} 
               />
             {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+            {/* TODO coffee beside h1 */}
             <h1>Gilmore girls API</h1>
+            <img src="./coffee.png" alt="Coffee Cup"/>
           </div>
         </header>
-        <Route 
-          exact path="/season/:seasonNum" 
-          component={SeasonDisplay} 
-        />
-        <Route
-          exact path="/season/:seasonNum/episode/:episodeNum"
-          component={Episode}
-        />
-        <Route path="/input" component={InputReferences} />
+        <main>
+          <Route 
+            exact path="/season/:seasonNum" 
+            component={SeasonDisplay} 
+          />
+          <Route
+            exact path="/season/:seasonNum/episode/:episodeNum"
+            component={Episode}
+          />
+          <Route path="/input" component={InputReferences} />
+        </main>
       </div>
     </Router>
   );

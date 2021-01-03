@@ -1,15 +1,55 @@
-
-
 .episodeList {
     display: flex;
     justify-content: space-between;
+    // align-items: center;
     flex-wrap: wrap;
 
-    border: 1px solid black;
-
     .episodeCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background: $colour4;
         width: calc((100% / 3) - 10px);
+        min-height: 300px;
+        border-radius: 5px;
         margin: 10px 0;
-        border: 1px solid blue;
+
+        h3, h4 {
+            background: $colour3;
+            color: $colour1;
+            padding: 5px 0;
+        }
+        
+        h3 {
+            font-size: 2.5rem;
+        }
+
+        h4 {
+            font-size: 2.3rem;
+        }
+
+        p {
+            font-size: 3rem;
+            color: $colour6;
+        }
+
+        a {
+            display: inline-block;
+            background: $colour6;
+            width: 250px;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: inherit;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 0 auto;
+
+            &:hover, &:focus {
+                background: $colour2;
+                color: $colour3;
+            }
+        }
     }
 }

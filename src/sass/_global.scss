@@ -8,6 +8,11 @@ html {
   font-size: 62.5%;
 }
 
+img {
+  width: 100px;
+  height: auto;
+}
+
 .wrapper {
   max-width: 1280px;
   width: 90%;
@@ -36,6 +41,7 @@ $bodyFont: 'PT Serif';
 
 
 body {
+  background: $colour5;
   font-family: $bodyFont;
   font-size: 1.6rem;
   color: $colour3;
@@ -46,9 +52,11 @@ body {
   }
 
   h2 {
+    background: $colour2;
+    font-family: $subHeading;
     font-size: 3rem;
     margin-bottom: 50px;
-    font-family: $subHeading;
+    padding: 10px 0;
   }
 }
 
