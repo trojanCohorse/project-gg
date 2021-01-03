@@ -101,8 +101,8 @@ const InputReferences = () => {
             borderRadius: 5,
             colors: {
               ...theme.colors,
-              primary25: '#d479ff',
-              primary: '#3a1879',
+              primary25: '#dff3e3',
+              primary: '#142c53',
             }
           })}
           required
@@ -124,8 +124,8 @@ const InputReferences = () => {
             borderRadius: 5,
             colors: {
               ...theme.colors,
-              primary25: '#d479ff',
-              primary: '#3a1879',
+              primary25: '#dff3e3',
+              primary: '#142c53',
             }
           })}
           required
