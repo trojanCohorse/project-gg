@@ -22,12 +22,12 @@ const App = () => {
               path="/" 
               component={Navbar} 
               />
+            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+            <h1>Gilmore girls API</h1>
             <Route 
               path="/approve"
               component={NewReferencesDisplay}
               />
-            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
-            <h1>Gilmore girls API</h1>
           </div>
         </header>
         <Route 
@@ -46,5 +46,3 @@ const App = () => {
 }
 
 export default App;
-
-
