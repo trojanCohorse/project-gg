@@ -5,6 +5,7 @@ import InputReferences from './components/InputReferences.js';
 import Navbar from "./components/Navbar.js";
 import SeasonDisplay from "./components/SeasonDisplay";
 import Episode from "./components/Episode";
+import Season from './components/Season';
 
 const App = () => {
   return (
@@ -18,13 +19,13 @@ const App = () => {
           />
         </header>
         <Route 
-          exact path="/season/:seasonNum" 
+          path="/season/:seasonNum" 
           component={SeasonDisplay} 
         />
-        <Route
-          exact path="/season/:seasonNum/episode/:episodeNum"
-          component={Episode}
-        />
+{/* 
+        <Route path='/' render={() => (
+          <Season test={'test'} />
+        )} /> */}
         <Route path="/input" component={InputReferences} />
       </div>
     </Router>
