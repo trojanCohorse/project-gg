@@ -63,7 +63,11 @@ const InputReferences = () => {
     }
     }).then((res) => {
       console.log('maloned', res);
-    }, (err) => console.log(err));
+      alert("Reference added to approval list. Thank you!");
+    }).catch( (err) => {
+      console.log(err);
+      alert(`Sorry, reference submit failed: ${err}`);
+    });
 
     // set back to default values
     setSeasonNum(1);
