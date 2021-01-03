@@ -15,10 +15,6 @@ const NewReferencesDisplay = ()=> {
       console.log(approvalData);
     }).catch(err => console.log(err));
   }, [])
-<<<<<<< HEAD
-  console.log(approvalData);
-  return null;
-=======
   console.log('Initial log');
 
   return(
@@ -70,7 +66,6 @@ const NewReferencesDisplay = ()=> {
       })} */}
     </div>
   );
->>>>>>> 134fa908cc4a669733f4c7f7ead5c65a128322ab
 }
 
 
