@@ -24,7 +24,7 @@ const App = () => {
                 />
               {/* REVIEW title should reflect the purpose of our app (copyright!) */}
               <h1>Gilmore girls API</h1>
-              <img src="./coffee.png" alt="Coffee Cup"/>
+              <img src="../coffee.png" alt="Coffee Cup"/>
               <Route 
                 path="/approve"
                 component={NewReferencesDisplay}
