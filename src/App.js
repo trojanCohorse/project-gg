@@ -36,10 +36,6 @@ const App = () => {
               exact path="/season/:seasonNum" 
               component={SeasonDisplay} 
             />
-            <Route
-              exact path="/season/:seasonNum/episode/:episodeNum"
-              component={Episode}
-            />
             <Route path="/input" component={InputReferences} />
           </main>
           <footer>Created by Asif, Boris, Caitlin, and Greg</footer>
