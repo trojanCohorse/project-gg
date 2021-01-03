@@ -1,9 +1,3 @@
-/* TODO
-  - input colour?
-  - number input buttons (react-numeric-input?)
-  - select styles (one input color has been chosen
-*/
-
 .referencesForm {
   display: grid;
   grid-template-columns: 1fr repeat(2, 2fr);
@@ -20,7 +14,7 @@
   label {
     background: $colour3;
     grid-column-start: 1;
-    height: 90px;
+    height: 95px;
     text-align: left;
     font-size: 2rem;
     color: $colour1;
@@ -33,14 +27,22 @@
   
   input, .seasonSelect, textarea {
     grid-column: 2 / span 2;
+    font-size: 2rem;
+    // font-weight: 700;
+    text-shadow: 1px 1px 2px $colour6;
     border: none;
     border-radius: 5px;
     padding: 10px;
   }
   
   input, textarea {
-    background: $colour6;
+    background: $colour5;
+    color: $colour3;
     margin-left: 10px;
+
+    &:hover, &:focus {
+      background: $colour2;
+    }
   }
 
   input {
@@ -49,10 +51,56 @@
     margin-left: 10px;
   }
 
-  
+  input[type=number] {
+    width: 50%;
+  }
+
+  .seasonSelect {
+
+    // class names are react-select specific
+    // unselected select
+    .css-ql68v7-control {
+      background: $colour5;
+      border: none;
+      
+      &:hover, &:focus, &:active {
+        background: $colour2;
+      }
+      
+      .css-1wa3eu0-placeholder {
+        color: $colour3;
+      }
+    }
+
+    // selected select
+    .css-my4s1l-control {
+      background: $colour2;
+      box-shadow: none;
+      border: none;
+
+      .css-1wa3eu0-placeholder {
+        color: $colour3;
+      }
+    }
+
+    // dropdown menu
+    .css-182gzek-menu {
+      background: $colour2;
+    }
+
+    // indicators control
+    .css-1okebmr-indicatorSeparator {
+      background: $colour3;
+    }
+
+    .css-tlfecz-indicatorContainer {
+      color: $colour3;
+    }
+  }
 
   textarea {
     height: 80px;
+    font-family: inherit;
 
     &:last-of-type {
       margin-bottom: 0;

@@ -4,6 +4,7 @@ header {
 
   h1, img {
     display: inline-block;
+    padding-top: 50px;
   }
 }
 
@@ -54,6 +55,20 @@ header nav ul {
         background: $colour2;
         color: $colour3;
       }
+    }
+  }
+
+  .navLinks button {
+    display: inline-block;
+    font-family: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 10px;
+
+    &:hover, &:focus {
+      background: $colour2;
+      color: $colour3;
     }
   }
 }
