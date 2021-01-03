@@ -25,6 +25,7 @@ const SeasonDisplay = () => {
     }
   }, [showSeason]);
 
+
   return (  
     <section className="seasons">
       <h2>Season {showSeason}</h2>
