@@ -13,6 +13,7 @@ const NewReferencesDisplay = ()=> {
       setApprovalData(res.data[0].references);
     }).catch(err => console.log(err));
   }, [])
+  console.log(approvalData);
   return null;
 }
 
