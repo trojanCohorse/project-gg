@@ -8,6 +8,29 @@ html {
   font-size: 62.5%;
 }
 
+img {
+  width: 100px;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrapper {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+// COLOUR VARIABLES
+$colour1: #d68060;
+$colour2: #f1ae89;
+$colour3: #142c53;
+$colour4: #2e4062;
+$colour5: #86aba1;
+$colour6: #dff3e3;
+
 // FONT VARIABLES
 @font-face {
   font-family: 'Sackers Antique';
@@ -16,33 +39,37 @@ html {
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Source+Serif+Pro:wght@600&display=swap');
 // font-family: 'PT Serif', serif;
 // font-family: 'Source Serif Pro', serif;
-$sackers: 'Sackers Antique';
-$PTSerif: 'PT Serif';
-$SourceSerif: 'Source Serif Pro';
+$mainHeading: 'Sackers Antique';
+$subHeading: 'Source Serif Pro';
+$bodyFont: 'PT Serif';
 
 
 body {
+  background: $colour5;
+  font-family: $bodyFont;
   font-size: 1.6rem;
-  h1 {
+  color: $colour3;
 
-    font-family: $sackers;
+  h1 {
+    font-family: $mainHeading;
+    font-size: 8rem;
   }
 
   h2 {
+    background: $colour2;
+    font-family: $subHeading;
     font-size: 3rem;
     margin-bottom: 50px;
-    font-family: $PTSerif;
+    padding: 10px 0;
   }
 }
 
-ul {
-  list-style: none;
+main {
+  min-height: calc(50vh - 58px);
 }
 
-// COLOUR VARIABLES
-$colour1: #b54366;
-$colour2: #db79a4;
-$colour3: #142c53;
-$colour4: #b46474;
-$colour5: #b6bdc7;
-$colour6: #2e4062;
+footer {
+  background: $colour3;
+  color: $colour6;
+  padding: 20px;
+}

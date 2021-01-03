@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import axiosRequest from './episodeReq.js';
-
+import axiosRequest from "./episodeReq.js";
 // available seasons for the season number dropdown
 const seasonOptions = [
   { value: 1, label: "1" },
-  { value: 2, label: "2" }, 
+  { value: 2, label: "2" },
   { value: 3, label: "3" },
   { value: 4, label: "4" },
   { value: 5, label: "5" },
@@ -23,7 +22,6 @@ const InputReferences = () => {
   const [episodeNum, setEpisodeNum] = useState(1);
   const [subject, setSubject] = useState('');
   const [timestamp, setTimestamp] = useState({ minutes: 0, seconds: 0 });
-  // destructure timestamp
   const { minutes, seconds } = timestamp;
   const [quote, setQuote] = useState('');
   const [speaker, setSpeaker] = useState('');
@@ -83,9 +81,9 @@ const InputReferences = () => {
   }
 
   return (
-    <section className="referencesForm">
+    <section >
       <h2>Add Your Reference!</h2>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form action="submit" className="referencesForm" onSubmit={handleSubmit}>
         <label htmlFor="seasonNum">Season Number</label>
         {/* NOTE even though the Selects are required, they both have an initial value of one, and the form submits even when nothing is chosen. */}
         <Select
@@ -98,6 +96,15 @@ const InputReferences = () => {
             setSeasonNum(seasonNum);
             findEpisodes(seasonNum.value);
           }}
+          theme={theme => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#dff3e3',
+              primary: '#142c53',
+            }
+          })}
           required
         />
 
@@ -112,6 +119,15 @@ const InputReferences = () => {
             setEpisodeNum(episodeNum);
             findEpisodes(episodeNum.value); // TODO check to see if this is needed once the 503 error is gone
           }}
+          theme={theme => ({
+            ...theme,
+            borderRadius: 5,
+            colors: {
+              ...theme.colors,
+              primary25: '#dff3e3',
+              primary: '#142c53',
+            }
+          })}
           required
         />
 
@@ -192,10 +208,12 @@ const InputReferences = () => {
           required
         ></textarea>
 
-        {/* STRETCH */}
-        <button>Add Another Reference</button>
-        {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
-        <input type="submit" value="Submit" />
+        <div className="buttons">
+          {/* STRETCH */}
+          <button>Add Another Reference</button>
+          {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
+          <input type="submit" value="Submit" />
+        </div>
       </form>
     </section>
   );

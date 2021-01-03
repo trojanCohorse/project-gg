@@ -78,25 +78,6 @@ const SeasonDisplay = () => {
       </Switch>
     </div>
   )
-
-  return (  
-    <div>
-      <h2>Season {showSeason}</h2>
-      {
-        episodeNum ? (
-          <p>episode</p>
-        ) : (
-          <p>season</p>
-        )
-      }
-    </div>
-  )
 }
 
 export default SeasonDisplay;
-
-
-{/* <Route
-    exact path="/season/:seasonNum/episode/:episodeNum"
-    component={Episode}
-  /> */}
