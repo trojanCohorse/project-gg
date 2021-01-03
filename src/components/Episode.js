@@ -1,38 +1,94 @@
 // import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 
 const Episode = (props) => { 
+  console.log('tesat');
   const { episodeNum } = useParams();
   const [result, setResult] = useState(0);
-  const [episodeResult, setEpisodeResult] = useState([]);
-
-  useEffect(async () => {
-    const result = await props.changeEpisodeNum(episodeNum);
-    setResult(5);
-  }, [])
+  const [episodeResult, setEpisodeResult] = useState(0);
+  const [image, setImage] = useState([]);
 
   useEffect(() => {
-    props.getEpisode().then((res) => setEpisodeResult(res));
-  }, [result])
+    props.changeEpisodeNum(episodeNum);
+    setResult(5);
+  }, []);
 
-  // console.log(result);
-  // console.log(props.episodeObj[props.seasonNum]);
-  // console.log(props.episodeObj[props.seasonNum][episodeNum].episodeNumber);
-  // const episodeObj = props.episodeObj;
+  useEffect(() => {
+    if (result !== 0) {
+      props.getEpisode().then((res) => {
+        console.log(res);
+        setEpisodeResult(res)
+      });
+    }
+  }, [result]);
+  
+  // url: `https://api.themoviedb.org/3/tv/4586/season/${episodeResult.seasonNumber}/episode/${episodeNum}?api_key=cd7b67374269e15777a55aee45332dab`
+  // https://api.themoviedb.org/3/tv/4586/season/1/episode/4?api_key=cd7b67374269e15777a55aee45332dab
+  useEffect(() => {
+    const seasonNum = episodeResult.seasonNumber; 
 
-  // console.log(episodeNum, props.seasonNum);
+    if (episodeResult) {
+      console.log('running: ', seasonNum);
+      axios({
+        method: 'GET',
+        url: `https://api.themoviedb.org/3/tv/4586/season/${seasonNum}/episode/${episodeNum}?api_key=cd7b67374269e15777a55aee45332dab`
+      }).then(res => {
+        console.log('image gotted');
+        const newImage = 'https://image.tmdb.org/t/p/original' + res.data.still_path;
+        setImage(newImage);
+      }).catch(err => console.log('err: ', err));
+    }
+  }, [episodeResult])
 
   return (
     <section className="episodeInfo">
-      <p>episode info here</p>
       {episodeResult && (
-        <p>{episodeResult.episodeNumber}</p>
+        <div class="wrapper">
+          <p>{episodeResult.name}</p>
+          <img src={image} alt="image of show" />
+          {
+            episodeResult.references.length > 0 && (
+              <section className="references episodeContainer">
+                {
+                  episodeResult.references.map(reference => {
+                    return (
+                      <article key={reference.id} className="episodeRef">
+                        <div className="entryLine">
+                          <h5>Subject:</h5>
+                          <p className="scroll">{reference.subject}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Time Stamp:</h5>
+                          <p>{reference.timestamp}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Quote:</h5>
+                          <p className="scroll">{reference.quote}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Speaker:</h5>
+                          <p className="scroll">{reference.speaker}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Context:</h5>
+                          <p className="scroll">{reference.context}</p>
+                        </div>
+                        <div className="entryLine">
+                          <h5>Meaning:</h5>
+                          <p className="scroll">{reference.meaning}</p>
+                        </div>
+                      </article>
+                    )
+                  })
+                }
+              </section>
+            )
+          }
+        </div>
       )}
-      {/* { Object.keys(episodeObj).length > 0 && (
-        <p>{props.episodeObj[props.seasonNum][episodeNum].episodeNumber}</p>
-      )} */}
     </section>
   )
 }

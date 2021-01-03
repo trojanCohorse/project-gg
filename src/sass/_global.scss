@@ -9,7 +9,7 @@ html {
 }
 
 img {
-  width: 100px;
+  width: 100%;
   height: auto;
 }
 
@@ -33,16 +33,15 @@ $colour6: #dff3e3;
 
 // FONT VARIABLES
 @font-face {
-  font-family: 'Sackers Antique';
+  font-family: "Sackers Antique";
   src: url(./SackersAntiqueRomanSolidAT.otf);
 }
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Source+Serif+Pro:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&family=Source+Serif+Pro:wght@600&display=swap");
 // font-family: 'PT Serif', serif;
 // font-family: 'Source Serif Pro', serif;
-$mainHeading: 'Sackers Antique';
-$subHeading: 'Source Serif Pro';
-$bodyFont: 'PT Serif';
-
+$mainHeading: "Sackers Antique";
+$subHeading: "Source Serif Pro";
+$bodyFont: "PT Serif";
 
 body {
   background: $colour5;

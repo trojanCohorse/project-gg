@@ -2,9 +2,14 @@ header {
   height: 50vh;
   background: $colour6;
 
-  h1, img {
+  h1,
+  img {
     display: inline-block;
     padding-top: 50px;
+  }
+
+  img {
+    width: 100px;
   }
 }
 
@@ -14,8 +19,9 @@ header nav {
   font-size: 2rem;
   color: $colour6;
   position: relative;
-  
-  &::before, &::after {
+
+  &::before,
+  &::after {
     content: "";
     width: 5vw;
     height: 43px;
@@ -23,7 +29,7 @@ header nav {
     position: absolute;
     top: 0;
   }
-  
+
   &::before {
     left: -5vw;
   }
@@ -31,17 +37,16 @@ header nav {
   &::after {
     right: -5vw;
   }
-  
 }
 
 header nav ul {
   display: flex;
   justify-content: space-between;
   height: auto;
-  
+
   div {
     display: flex;
-    
+
     li {
       margin-right: 20px;
     }
@@ -51,7 +56,8 @@ header nav ul {
       text-decoration: none;
       padding: 10px;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background: $colour2;
         color: $colour3;
       }
@@ -66,7 +72,8 @@ header nav ul {
     border: none;
     padding: 10px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: $colour2;
       color: $colour3;
     }
