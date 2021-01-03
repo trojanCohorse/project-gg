@@ -25,8 +25,9 @@ const SeasonDisplay = () => {
     }
   }, [showSeason]);
 
-  return (
-    <div>
+
+  return (  
+    <section className="seasons">
       <h2>Season {showSeason}</h2>
       <ul className="episodeList wrapper">
         {
@@ -35,8 +36,10 @@ const SeasonDisplay = () => {
               const { episodeNumber, name, overallNumber, references, seasonNumber } = episode;
               return (
                 <li key={episodeNumber} className="episodeCard">
-                  <h3>{name}</h3>
-                  <h4> Episode {episodeNumber}</h4>
+                  <div>
+                    <h3>{name}</h3>
+                    <h4> Episode {episodeNumber}</h4>
+                  </div>
 
                   <p>Image Goes Here</p>
                   <Link to={`/season/${showSeason}/episode/${episodeNumber}`} >See References</Link>
@@ -46,7 +49,7 @@ const SeasonDisplay = () => {
           )
         }
       </ul>
-    </div>
+    </section>
   )
 }
 

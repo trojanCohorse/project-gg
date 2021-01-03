@@ -22,23 +22,27 @@ const App = () => {
               path="/" 
               component={Navbar} 
               />
+            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+            {/* TODO coffee beside h1 */}
+            <h1>Gilmore girls API</h1>
+            <img src="./coffee.png" alt="Coffee Cup"/>
             <Route 
               path="/approve"
               component={NewReferencesDisplay}
-              />
-            {/* REVIEW title should reflect the purpose of our app (copyright!) */}
-            <h1>Gilmore girls API</h1>
+            />
           </div>
         </header>
-        <Route 
-          exact path="/season/:seasonNum" 
-          component={SeasonDisplay} 
-        />
-        <Route
-          exact path="/season/:seasonNum/episode/:episodeNum"
-          component={Episode}
-        />
-        <Route path="/input" component={InputReferences} />
+        <main>
+          <Route 
+            exact path="/season/:seasonNum" 
+            component={SeasonDisplay} 
+          />
+          <Route
+            exact path="/season/:seasonNum/episode/:episodeNum"
+            component={Episode}
+          />
+          <Route path="/input" component={InputReferences} />
+        </main>
       </div>
     </Router>
   </Auth0Provider>
@@ -46,5 +50,3 @@ const App = () => {
 }
 
 export default App;
-
-

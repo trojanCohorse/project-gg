@@ -1,6 +1,10 @@
 header {
   height: 50vh;
   background: $colour6;
+
+  h1, img {
+    display: inline-block;
+  }
 }
 
 header nav {
@@ -46,7 +50,7 @@ header nav ul {
       text-decoration: none;
       padding: 10px;
 
-      &:hover {
+      &:hover, &:focus {
         background: $colour2;
         color: $colour3;
       }
