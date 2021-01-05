@@ -1,8 +1,11 @@
 import { useState, useEffect, } from 'react';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 import postRefToDb from './referencePost.js';
+import { sortTimestamps } from './sortFunctions.js';
 
 const NewReferencesDisplay = ()=> {
+  const { user, isAuthenticated } = useAuth0();
   const [ approvalData, setApprovalData ] = useState([]);
   // state for expanding the quote, context, and meaning paragraphs for when they exceed a certain character limit
   const [readMore, setReadMore] = useState(false);
@@ -12,13 +15,18 @@ const NewReferencesDisplay = ()=> {
       method: 'GET',
       url: `https://project-gg.herokuapp.com/seasons/approve`
     }).then(res => {
-      const input = res.data.sort((a, b) => a.seasonNumber - b.seasonNumber);
-      console.log(input);
-      const inputSorted = input.sort((a, b) => a.episodeNumber - b.episodeNumber);
-      console.log(inputSorted);
-      console.log('Stuff to approve', res.data);
-      setApprovalData(res.data);
-      console.log(approvalData);
+      const currentSeason = [];
+      const sortedSeasons = res.data.sort((a, b) => a.seasonNumber - b.seasonNumber);
+      console.log({ sortedSeasons });
+      // for (let i = 0; sortedSeasons.length; i++) {
+        
+      // }
+      // const inputSorted = input.sort((a, b) => a.episodeNumber - b.episodeNumber);
+
+
+      // console.log('Stuff to approve', res.data);
+      // setApprovalData(sortedSeasons);
+      // console.log(approvalData);
     }).catch(err => console.log(err));
   }, [])
   console.log('Initial log');
@@ -62,7 +70,7 @@ const NewReferencesDisplay = ()=> {
                           <h5>Meaning:</h5>
                           <p className="scroll">{reference.meaning}</p>
                         </div>
-                        <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, item.seasonNumber, item.episodeNumber, i) }>Approve</button>
+                        {(isAuthenticated && (user.sub === 'auth0|5ff1e3bfe00a83006e89c066' || user.sub === 'google-oauth2|114200838558211120591' || user.sub === 'google-oauth2|109142349949295009924' || user.sub === 'google-oauth2|105943216189762454578')) ? <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, item.seasonNumber, item.episodeNumber, i) }>Approve</button> : null}
                       </article>
                     )
                   })
@@ -98,3 +106,5 @@ const NewReferencesDisplay = ()=> {
 
 
 export default NewReferencesDisplay;
+
+

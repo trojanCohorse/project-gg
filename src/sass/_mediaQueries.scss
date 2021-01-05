@@ -1,6 +1,63 @@
 // mobile nav @ 1135px
 @media (max-width: 1135px) {
+    header {
+        // drop down menu
+            // make hamburger menu visible
+            .menuToggle {
+                visibility: visible;
+                position: fixed;
+                z-index: 20;
+    
+                // NOTE make hamburger focusable?
+            }
+    
+            input:checked ~ nav {
+                right: 0;
+            }
+    
+            nav {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                right: 100vw;
+                bottom: 0;
+                z-index: 10;
+                opacity: 0.8;
+                transition: all 0.5s;
+    
+                ul {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    height: calc(100vh - 75px);
 
+                    div {
+                        flex-direction: column;
+                        width: 100%;
+                        height: auto;
+    
+                        li {
+                            width: 85%;
+                            margin: 0;
+                        }
+                        
+                        a {
+                            display: inline-block;
+                            width: 100%;
+                            height: auto;
+                            // text-align: right;
+                            padding: 10px 20px;
+                            margin: 5px 0;
+
+                        }
+                    }
+
+                    .navLinks button {
+                        width: 100%;
+                    }
+                }
+    
+            }
+    }
 }
 // time stamp input @ 930px
     // form width increase?
@@ -10,3 +67,8 @@
 // 600px
     // reference headings
     // site heading coffee cup / text size
+@media (max-width: 600px) {
+    header nav ul div li {
+        width: 65%;
+    }
+}

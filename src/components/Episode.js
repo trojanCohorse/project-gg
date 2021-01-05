@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { sortTimestamps } from './sortFunctions';
 // import axios from 'axios';
 
 const Episode = (props) => { 
@@ -10,6 +11,7 @@ const Episode = (props) => {
   const [result, setResult] = useState(0);
   const [episodeResult, setEpisodeResult] = useState(0);
   const [image, setImage] = useState([]);
+  const [sortedEpisodes, setSortedEpisodes] = useState([]);
 
   useEffect(() => {
     props.changeEpisodeNum(episodeNum);
@@ -43,10 +45,14 @@ const Episode = (props) => {
     }
   }, [episodeResult])
 
+  useEffect(() => {
+    if (episodeResult !== 0) setSortedEpisodes(sortTimestamps(episodeResult.references));
+  }, [episodeResult])
+
   return (
     <section className="episodeInfo">
       {episodeResult && (
-        <div class="wrapper">
+        <div className="wrapper">
           <h3>{episodeResult.name}</h3>
           <img src={image} alt="image of show" />
           {
