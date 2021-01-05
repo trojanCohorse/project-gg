@@ -14,7 +14,7 @@ header {
 }
 
 header nav {
-  height: 43px;
+  height: 70px;
   background: $colour3;
   font-size: 2rem;
   color: $colour6;
@@ -24,7 +24,7 @@ header nav {
   &::after {
     content: "";
     width: 5vw;
-    height: 43px;
+    height: 70px;
     background: $colour3;
     position: absolute;
     top: 0;
@@ -42,7 +42,8 @@ header nav {
 header nav ul {
   display: flex;
   justify-content: space-between;
-  height: auto;
+  align-items: center;
+  height: 70px;
 
   div {
     display: flex;
@@ -51,10 +52,12 @@ header nav ul {
       margin-right: 20px;
     }
     a {
+      height: 60px;
       display: inline-block;
       color: inherit;
       text-decoration: none;
       padding: 10px;
+      border-radius: 5px;
 
       &:hover,
       &:focus {
@@ -65,11 +68,13 @@ header nav ul {
   }
 
   .navLinks button {
+    height: 60px;
     display: inline-block;
     font-family: inherit;
     color: inherit;
     background: none;
     border: none;
+    border-radius: 5px;
     padding: 10px;
 
     &:hover,

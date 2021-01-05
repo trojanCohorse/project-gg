@@ -47,7 +47,7 @@ const Episode = (props) => {
     <section className="episodeInfo">
       {episodeResult && (
         <div class="wrapper">
-          <p>{episodeResult.name}</p>
+          <h3>{episodeResult.name}</h3>
           <img src={image} alt="image of show" />
           {
             episodeResult.references.length > 0 && (
