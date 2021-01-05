@@ -14,7 +14,7 @@ const Season = ({ season }) => {
                     <h3>{name}</h3>
                     <h4> Episode {episodeNumber}</h4>
                   </div>
-                  <p>Image Goes Here</p>
+                  {/* STRETCH: Custom GIFs <p>Image Goes Here</p> */}
                   <Link to={`/season/${seasonNumber}/episode/${episodeNumber}`} >See References</Link>
                 </li>
               )

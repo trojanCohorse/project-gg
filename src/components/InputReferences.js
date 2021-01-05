@@ -146,6 +146,7 @@ const InputReferences = () => {
         />
 
         <fieldset>
+          {/* TODO use regex to check numbers */}
           <legend>Time Stamp</legend>
           <div className="minutes">
             <label htmlFor="minutes">Minutes</label>
