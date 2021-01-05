@@ -17,9 +17,9 @@ const App = () => {
       <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
           <header>
-            <div className="wrapper">
               <Route path="/" component={Navbar} />
               {/* REVIEW title should reflect the purpose of our app (copyright!) */}
+            <div className="wrapper">
               <h1>Gilmore girls API</h1>
               <img src="../coffee.png" alt="Coffee Cup" />
             </div>
