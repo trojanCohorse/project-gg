@@ -4,32 +4,37 @@ import { useAuth0 } from '@auth0/auth0-react';
 import postRefToDb from './referencePost.js';
 import { sortTimestamps } from './sortFunctions.js';
 
+
+
 const NewReferencesDisplay = ()=> {
   const { user, isAuthenticated } = useAuth0();
   const [ approvalData, setApprovalData ] = useState([]);
   // state for expanding the quote, context, and meaning paragraphs for when they exceed a certain character limit
   const [readMore, setReadMore] = useState(false);
-  
+
   useEffect(() => {
     axios({
       method: 'GET',
       url: `https://project-gg.herokuapp.com/seasons/approve`
     }).then(res => {
-      const currentSeason = [];
-      const sortedSeasons = res.data.sort((a, b) => a.seasonNumber - b.seasonNumber);
-      console.log({ sortedSeasons });
-      // for (let i = 0; sortedSeasons.length; i++) {
-        
-      // }
-      // const inputSorted = input.sort((a, b) => a.episodeNumber - b.episodeNumber);
-
-
-      // console.log('Stuff to approve', res.data);
-      // setApprovalData(sortedSeasons);
-      // console.log(approvalData);
+      const modifyTime = (timestamp) => {
+        const inputMinutes = timestamp.match(/^\d+/)[0];
+        const inputSeconds = timestamp.match(/\d+$/)[0];
+        return Number(inputMinutes) * 60 + Number(inputSeconds);
+      }
+      const sortingTimestamps = [];
+      res.data.forEach((obj) => {
+        obj.references.sort((a, b) => {
+          const sortedTimeA = modifyTime(a.timestamp);
+          const sortedTimeB = modifyTime(b.timestamp);
+          return sortedTimeA - sortedTimeB;
+        })
+        sortingTimestamps.push(obj);
+      })
+      const sortedSeasons = sortingTimestamps.sort((a, b) => a.seasonNumber - b.seasonNumber || a.episodeNumber - b.episodeNumber);
+      setApprovalData(sortedSeasons);
     }).catch(err => console.log(err));
   }, [])
-  console.log('Initial log');
 
   return(
     <section className="newRefs">
