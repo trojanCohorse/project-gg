@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar.js";
 import SeasonDisplay from "./components/SeasonDisplay";
 import NewReferencesDisplay from "./components/NewReferencesDisplay";
 import Instructions from "./components/Instructions.js"
-
 const App = () => {
   return (
     <Auth0Provider
@@ -21,7 +20,7 @@ const App = () => {
               <Route path="/" component={Navbar} />
               {/* REVIEW title should reflect the purpose of our app (copyright!) */}
             <div className="wrapper">
-              <h1>Gilmore girls API</h1>
+              <h1><Link to="/">Gilmore girls API</Link></h1>
               <img src="../coffee.png" alt="Coffee Cup" />
             </div>
           </header>
@@ -31,7 +30,7 @@ const App = () => {
             <Route path="/input" component={InputReferences} />
             <Route path="/approve" component={NewReferencesDisplay} />
           </main>
-          <footer>Created by Asif, Boris, Caitlin, and Greg</footer>
+          <footer>Created by <a href="https://codedkhan.com/">Asif</a>, <a href="https://borisweb.dev/">Boris</a>, <a href="https://caitalotz.com/">Caitlin</a>, and <a href="https://gregforster.ca/">Greg</a></footer>
         </div>
       </Router>
     </Auth0Provider>

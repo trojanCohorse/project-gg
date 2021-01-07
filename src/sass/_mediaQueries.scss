@@ -59,26 +59,81 @@
             }
     }
 }
-// time stamp input @ 930px
-    // form width increase?
+
 @media (max-width: 930px) {
+    // heading 1
+    body {
+
+        h1 {
+            font-size: 7rem;
+        }
+    }
+    
     // new reference section
     .referencesForm {
         width: 80vw;
     }
 
     // season episodes section
-    
+    .episodeList {
+
+        .episodeCard {
+            width: calc((100% / 2) - 10px);
+        }
+    }
 }
 
-// 2 columns/season @ 900px
-// form text inputs @ 675px
 // approval cards @ 650px
-// 600px
+@media (max-width: 650px) {
     // reference headings
-    // site heading coffee cup / text size
+    .episodeContainer {
+        grid-template-columns: 1fr;
+
+        .episodeRef {
+            
+            h5{
+                width: calc(35% - 5px);
+            }
+
+            p {
+                width: 65%;
+            }
+        }
+    }
+}
+
 @media (max-width: 600px) {
-    header nav ul div li {
-        width: 65%;
+    // heading 1
+    body {
+
+        h1 {
+            // NOTE check @ 320px
+            font-size: 5rem;
+        }
+    }
+
+    header {
+
+        img {
+            padding-top: 0;
+        }
+        
+        nav ul div li {
+            width: 65%;
+        }
+    }
+
+    // season episodes section
+    .episodeList {
+
+        .episodeCard {
+            width: calc(100%  - 10px);
+        }
+    }
+
+
+    .instructionsListContainer {
+      grid-template-columns: 1fr;
+      grid-row-gap: 25px;
     }
 }

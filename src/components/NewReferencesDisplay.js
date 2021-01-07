@@ -2,7 +2,6 @@ import { useState, useEffect, } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import postRefToDb from './referencePost.js';
-import { sortTimestamps } from './sortFunctions.js';
 
 
 

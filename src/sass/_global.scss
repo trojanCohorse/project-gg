@@ -65,6 +65,11 @@ body {
     margin-bottom: 50px;
     padding: 10px 0;
   }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 main {
@@ -74,5 +79,10 @@ main {
 footer {
   background: $colour3;
   color: $colour6;
+  margin-top: 50px;
   padding: 20px;
+
+  a:hover, a:focus {
+    color: $colour1;
+  }
 }
