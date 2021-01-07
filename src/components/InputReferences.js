@@ -117,7 +117,6 @@ const InputReferences = () => {
           options={episodeOptions}
           onChange={(episodeNum) => {
             setEpisodeNum(episodeNum);
-            findEpisodes(episodeNum.value); // TODO check to see if this is needed once the 503 error is gone
           }}
           theme={theme => ({
             ...theme,

@@ -1,17 +1,28 @@
-.InstructionsListContainer {
+.instructionsListContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 50px;
+  grid-gap: 50px;
 }
 
-.InstructionsMainContainer {
+.instructionsMainContainer {
+
   h2 {
     background-color: $colour3;
     color: $colour6;
   }
+  h3.wrapper {
+    line-height: 1.8;
+    margin-bottom: 25px;
+    padding: 10px;
+    color: $colour6;
+    background-color: $colour3;
+    border-radius: 10px;
+    display: grid;
+    place-items: center start;
+  }
 }
 
-.InstructionsLists {
+.instructionsLists {
   text-align: left;
   border-radius: 10px;
   display: grid;
@@ -19,11 +30,18 @@
   grid-row-gap: 25px;
 }
 
-.InstructionsListItems {
+.instructionsListItems {
+  p, h3 {
+    line-height: 1.7
+  }
   color: $colour6;
   background-color: $colour3;
   border-radius: 10px;
   display: grid;
   place-items: center start;
-  padding: 5px 10px;
+  padding: 10px;
+
+  a:hover, a:focus {
+    color: $colour1;
+  }
 }

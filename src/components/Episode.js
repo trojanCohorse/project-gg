@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { sortTimestamps } from './sortFunctions';
 // import axios from 'axios';
 
 const Episode = (props) => { 
@@ -43,7 +42,7 @@ const Episode = (props) => {
   }, [episodeResult])
 
   useEffect(() => {
-    if (episodeResult !== 0) setSortedEpisodes(sortTimestamps(episodeResult.references));
+    if (episodeResult !== 0) setSortedEpisodes();
   }, [episodeResult])
 
   return (
