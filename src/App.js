@@ -6,6 +6,7 @@ import InputReferences from "./components/InputReferences.js";
 import Navbar from "./components/Navbar.js";
 import SeasonDisplay from "./components/SeasonDisplay";
 import NewReferencesDisplay from "./components/NewReferencesDisplay";
+import Instructions from "./components/Instructions.js"
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             </div>
           </header>
           <main>
+            <Route exact path="/" component={Instructions}  />
             <Route path="/season/:seasonNum" component={SeasonDisplay} />
             <Route path="/input" component={InputReferences} />
             <Route path="/approve" component={NewReferencesDisplay} />

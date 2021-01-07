@@ -32,7 +32,6 @@ const InputReferences = () => {
   const findEpisodes = (season) => {
     // store the formatted episodes in the episodeOptions dropdown menu
     episodeOptions = axiosRequest(season);
-    console.log("Did this work?", episodeOptions);
   }
 
   const handleSubmit = async (e) => {
@@ -50,7 +49,6 @@ const InputReferences = () => {
       meaning: meaning,
       // screenshot: "https://some-picture-hosting-website.com/image"
     }
-    console.log(reference);
     
     // use the season number and episode number so that they can be used to check for the specific season and episode
     axios({
@@ -62,10 +60,8 @@ const InputReferences = () => {
         "references": reference
     }
     }).then((res) => {
-      console.log('maloned', res);
       alert("Reference added to approval list. Thank you!");
     }).catch( (err) => {
-      console.log(err);
       alert(`Sorry, reference submit failed: ${err}`);
     });
 

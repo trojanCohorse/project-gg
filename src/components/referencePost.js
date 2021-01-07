@@ -17,7 +17,6 @@ const postRefToDb = (subject, timestamp, quote, speaker, context, meaning, seaso
       }
   }
   }).then((res) => {
-    console.log('maloned', res);
   }, (err) => console.log(err));
 }
 

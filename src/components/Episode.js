@@ -6,7 +6,7 @@ import { sortTimestamps } from './sortFunctions';
 // import axios from 'axios';
 
 const Episode = (props) => { 
-  console.log('tesat');
+  
   const { episodeNum } = useParams();
   const [result, setResult] = useState(0);
   const [episodeResult, setEpisodeResult] = useState(0);
@@ -21,7 +21,6 @@ const Episode = (props) => {
   useEffect(() => {
     if (result !== 0) {
       props.getEpisode().then((res) => {
-        console.log(res);
         setEpisodeResult(res)
       });
     }
@@ -33,12 +32,10 @@ const Episode = (props) => {
     const seasonNum = episodeResult.seasonNumber; 
 
     if (episodeResult) {
-      console.log('running: ', seasonNum);
       axios({
         method: 'GET',
         url: `https://api.themoviedb.org/3/tv/4586/season/${seasonNum}/episode/${episodeNum}?api_key=cd7b67374269e15777a55aee45332dab`
       }).then(res => {
-        console.log('image gotted');
         const newImage = 'https://image.tmdb.org/t/p/original' + res.data.still_path;
         setImage(newImage);
       }).catch(err => console.log('err: ', err));
