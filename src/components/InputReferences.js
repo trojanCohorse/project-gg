@@ -40,14 +40,13 @@ const InputReferences = () => {
     // put the rest of the values on the form into an object that will be pushed to the episode array
       // that object will be pushed to the episodes array
     const reference = {
-      // id: 1, --> Array.length ; added in backend
       subject: subject,
       timestamp: `${minutes}:${seconds < 10 ? "0" + seconds: seconds}`,
       quote: quote,
       speaker: speaker,
       context: speakerContext,
       meaning: meaning,
-      // screenshot: "https://some-picture-hosting-website.com/image"
+      // STRETCH -- screenshot: "https://some-picture-hosting-website.com/image"
     }
     
     // use the season number and episode number so that they can be used to check for the specific season and episode
@@ -75,9 +74,6 @@ const InputReferences = () => {
     setSpeakerContext('');
     setMeaning('');
     setSubmit('');
-
-    // TODO better UI; only inform the user that the reference was submitted if the post request was successful
-    alert("Reference Submitted!");
   }
 
   return (
@@ -209,9 +205,8 @@ const InputReferences = () => {
         ></textarea>
 
         <div className="buttons">
-          {/* STRETCH */}
+          {/* Stretch */}
           <button>Add Another Reference</button>
-          {/* REVIEW the form will still submit even if the Selects are empty; disable submit button until form is complete instead? */}
           <input type="submit" value="Submit" />
         </div>
       </form>

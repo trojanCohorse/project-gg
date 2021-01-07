@@ -10,24 +10,15 @@ const SeasonDisplay = () => {
   const [episodeObj, setEpisodeObj] = useState({});
   const [episodeNum, setEpisodeNum] = useState(1);
 
-  // useEffect(() => {
-  //   if (!episodeObj[seasonNum]) {
-  //     getEpisode();
-  //   } else if (!episodeObj[seasonNum][episodeNum]) {
-  //     getEpisode();
-  //   }
-  // }, [episodeNum])
-
   const getEpisodeAxios = async () => {
     return await axios.get(`https://project-gg.herokuapp.com/seasons/${seasonNum}/episodes/${episodeNum}`)
       .then(res => {
         const newEpisodeObj = episodeObj;
         newEpisodeObj[seasonNum] = { [episodeNum]: res.data[0] };
         setEpisodeObj(newEpisodeObj);
-        console.log(res);
         return res.data[0];
       })
-      .catch(err => console.log('Err: ', err));
+      .catch(err => alert('Err: ', err));
   }
 
   const [seasonsObj, setSeasonsObj] = useState({});
@@ -40,9 +31,8 @@ const SeasonDisplay = () => {
         method: 'GET',
         url: `https://project-gg.herokuapp.com/seasons/${showSeason}`
       }).then(res => {
-        // console.log('gotted');
         setSeasonsObj({...seasonsObj, [showSeason]: [res.data[0]] })
-      }).catch(err => console.log(err));
+      }).catch(err => alert(err));
     }
   }, [showSeason]);
 
@@ -52,14 +42,11 @@ const SeasonDisplay = () => {
   }
 
   const getEpisode = async () => {
-    console.log(episodeNum);
     if (!episodeObj[seasonNum]) {
       const result = await getEpisodeAxios();
-      console.log({result});
       return result;
     } else if (!episodeObj[seasonNum][episodeNum]) {
       const result = await getEpisodeAxios();
-      console.log({result});
       return result;
     }
     return episodeObj[seasonNum][episodeNum];

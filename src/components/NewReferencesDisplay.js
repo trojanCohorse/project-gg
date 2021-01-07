@@ -32,7 +32,7 @@ const NewReferencesDisplay = ()=> {
       })
       const sortedSeasons = sortingTimestamps.sort((a, b) => a.seasonNumber - b.seasonNumber || a.episodeNumber - b.episodeNumber);
       setApprovalData(sortedSeasons);
-    }).catch(err => console.log(err));
+    }).catch(err => alert(err));
   }, [])
 
   return(
@@ -84,26 +84,6 @@ const NewReferencesDisplay = ()=> {
           )
         })
       }
-
-
-
-
-
-
-      {/* {approvalData.map((item, index) => {
-        return (
-          <article key={index}>
-            <p>Index: {index}</p>
-            <p>Subject: {item.subject}</p>
-            <p>Timestamp: {item.timestamp}</p>
-            <p>Quote: {item.quote}</p>
-            <p>Speaker: {item.speaker}</p>
-            <p>Context: {item.context}</p>
-            <p>Meaning: {item.meaning}</p>
-            <button onClick={ () => postRefToDb(item.subject, item.timestamp, item.quote, item.speaker, item.context, item.meaning) }>Approve</button>
-          </article>
-        )
-      })} */}
     </section>
   );
 }

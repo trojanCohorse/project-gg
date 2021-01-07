@@ -3,7 +3,6 @@ import axios from 'axios';
 const axiosRequest = (seasonNum) => {
   // formatted array that has returned values from map, and then gets returned itself
   const readyToExport = [];
-  // https://project-gg.herokuapp.com/seasons/${seasonNum}
   axios({
     method: 'GET',
     url: `https://project-gg.herokuapp.com/seasons/${seasonNum}`,
@@ -18,7 +17,7 @@ const axiosRequest = (seasonNum) => {
       }
       readyToExport.push(formattedEpisode);
     });
-  }).catch((err) => console.log(err));
+  }).catch((err) => alert(err));
   
   return readyToExport;
 }

@@ -24,9 +24,7 @@ const Episode = (props) => {
       });
     }
   }, [result]);
-  
-  // url: `https://api.themoviedb.org/3/tv/4586/season/${episodeResult.seasonNumber}/episode/${episodeNum}?api_key=cd7b67374269e15777a55aee45332dab`
-  // https://api.themoviedb.org/3/tv/4586/season/1/episode/4?api_key=cd7b67374269e15777a55aee45332dab
+
   useEffect(() => {
     const seasonNum = episodeResult.seasonNumber; 
 
@@ -37,7 +35,7 @@ const Episode = (props) => {
       }).then(res => {
         const newImage = 'https://image.tmdb.org/t/p/original' + res.data.still_path;
         setImage(newImage);
-      }).catch(err => console.log('err: ', err));
+      }).catch(err => alert('err: ', err));
     }
   }, [episodeResult])
 
