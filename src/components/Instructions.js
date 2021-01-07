@@ -5,9 +5,7 @@ const Instructions = () => {
     <section className="instructionsMainContainer">
       <h2>Welcome to Stars Hollow, Residents</h2>
       <h3 className="wrapper">Is Lorelai talking a mile a minute again? References going over your head? Let this API be the Sookie to your Lorelai, whipping up references and meanings fresher than Jackson's vegetables!</h3>
-      {/* Grid Container Below
-      gtc: 1fr 1fr, gcg: 50px
-      */}
+      {/* Grid Container Below gtc: 1fr 1fr, gcg: 50px  */}
       <section className="instructionsListContainer wrapper">
         {/* Grid items, margin: 0, list-style: none */}
         <ul className="instructionsLists">
