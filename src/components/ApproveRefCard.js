@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import postRefToDb from './referencePost.js';
+import AuthButtons from "./AuthButtons.js";
+
 
 
 const upArrow = <FontAwesomeIcon icon={faCaretUp} />;
@@ -16,6 +17,8 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
     context: false, 
     meaning: false
   });
+  // allow edits to the content of the card
+  const [isEditable, setIsEditable] = useState(false);
 
   const handleReadMore = (e) => {
     const newReadMore = readMore;
@@ -29,15 +32,24 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
     <article className="episodeRef">
       <div className="entryLine">
         <h5>Subject:</h5>
-        <p className="scroll">{reference.subject}</p>
+        <p
+          className={"scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.subject}</p>
       </div>
       <div className="entryLine">
         <h5>Time Stamp:</h5>
-        <p>{reference.timestamp}</p>
+        <p
+          className={"scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.timestamp}</p>
       </div>
       <div className="entryLine">
         <h5 className={readMore.quote ? "largeText" : ""}>Quote:</h5>
-        <p className={readMore.quote ? "largeText" : "scroll"}>{reference.quote}</p>
+        <p
+          className={readMore.quote ? "largeText" : "scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.quote}</p>
         <button
           className="readMore"
           value="quote"
@@ -46,11 +58,17 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
       </div>
       <div className="entryLine">
         <h5>Speaker:</h5>
-        <p className="scroll">{reference.speaker}</p>
+        <p
+          className={"scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.speaker}</p>
       </div>
       <div className="entryLine">
         <h5 className={readMore.context ? "largeText" : ""}>Context:</h5>
-        <p className={readMore.context ? "largeText" : "scroll"}>{reference.context}</p>
+        <p
+          className={readMore.context ? "largeText" : "scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.context}</p>
         <button 
           className="readMore" 
           value="context"
@@ -59,14 +77,31 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
       </div>
       <div className="entryLine">
         <h5 className={readMore.meaning ? "largeText" : ""}>Meaning:</h5>
-        <p className={readMore.meaning ? "largeText" : "scroll"}>{reference.meaning}</p>
+        <p
+          className={readMore.meaning ? "largeText" : "scroll", isEditable ? "edit" : ""}
+          contentEditable={isEditable}
+        >{reference.meaning}</p>
         <button 
           className="readMore" 
           value="meaning"
           onClick={handleReadMore}
         >{readMore.meaning ? downArrow : upArrow}</button>
       </div>
-      {(isAuthenticated && (user.sub === 'auth0|5ff1e3bfe00a83006e89c066' || user.sub === 'google-oauth2|114200838558211120591' || user.sub === 'google-oauth2|109142349949295009924' || user.sub === 'google-oauth2|105943216189762454578')) ? <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, seasonNumber, episodeNumber, i) }>Approve</button> : null}
+      {
+        (isAuthenticated && (user.sub === 'auth0|5ff1e3bfe00a83006e89c066' || user.sub === 'google-oauth2|114200838558211120591' || user.sub === 'google-oauth2|109142349949295009924' || user.sub === 'google-oauth2|105943216189762454578'))
+        ?
+          <AuthButtons
+            key={i}
+            seasonNumber={seasonNumber}
+            episodeNumber={episodeNumber}
+            reference={reference}
+            i={i}
+            setIsEditable={setIsEditable}
+            isEditable={isEditable}
+          />
+        :
+          null
+        }
     </article>
   )
 }

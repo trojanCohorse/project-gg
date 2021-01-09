@@ -17,6 +17,7 @@ const NewReferencesDisplay = ()=> {
       }
       const sortingTimestamps = [];
       res.data.forEach((obj) => {
+        if (res.data)
         obj.references.sort((a, b) => {
           const sortedTimeA = modifyTime(a.timestamp);
           const sortedTimeB = modifyTime(b.timestamp);
