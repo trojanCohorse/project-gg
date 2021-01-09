@@ -1,22 +1,9 @@
 import { useState, useEffect, } from 'react';
 import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
-// import ReactDOM from "react-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import postRefToDb from './referencePost.js';
-
-const upArrow = <FontAwesomeIcon icon={faCaretUp} />
-const downArrow = <FontAwesomeIcon icon={faCaretDown} />
-
-// ReactDOM.render(upArrow, downArrow, document.body)
+import ApproveRefCard from './ApproveRefCard.js';
 
 const NewReferencesDisplay = ()=> {
-  const { user, isAuthenticated } = useAuth0();
   const [ approvalData, setApprovalData ] = useState([]);
-  // state for expanding the quote, context, and meaning paragraphs for when they exceed a certain character limit
-  const [readMore, setReadMore] = useState(false);
-  const showExtra = readMore ? upArrow : downArrow;
 
   useEffect(() => {
     axios({
@@ -37,6 +24,15 @@ const NewReferencesDisplay = ()=> {
         })
         sortingTimestamps.push(obj);
       })
+      /* const sortedSeasons = sortingTimestamps.sort((a, b) => {
+        if the number that is returned to the .sort is less than 0 sort *a* to a lower index than *b*
+        if (a.seasonNumber < b.seasonNumber) {
+          return -1;
+        } else if (a.seasonNumber > b.seasonNumber) {
+          if the number that is returned is greater than 0 sort *a* 
+          return 1;    
+        }
+      }) */
       const sortedSeasons = sortingTimestamps.sort((a, b) => a.seasonNumber - b.seasonNumber || a.episodeNumber - b.episodeNumber);
       setApprovalData(sortedSeasons);
     }).catch(err => alert(err));
@@ -47,45 +43,22 @@ const NewReferencesDisplay = ()=> {
       <h2>References Awaiting Approval</h2>
       {
         approvalData.map((item, episodeIndex) => {
+          const { seasonNumber, episodeNumber } = item;
           return (
-
             <div key={episodeIndex} className="wrapper">
-              <h3>Season: {item.seasonNumber}</h3>
-              <h4>Episode: {item.episodeNumber}</h4>
+              <h3>Season: {seasonNumber}</h3>
+              <h4>Episode: {episodeNumber}</h4>
               <div className="episodeContainer">
                 {
                   item.references.map((reference, i) => {
                     return (
-                      <article key={i} className="episodeRef">
-                        <div className="entryLine">
-                          <h5>Subject:</h5>
-                          <p className="scroll">{reference.subject}</p>
-                        </div>
-                        <div className="entryLine">
-                          <h5>Time Stamp:</h5>
-                          <p>{reference.timestamp}</p>
-                        </div>
-                        <div className="entryLine">
-                          <h5>Quote:</h5>
-                          <p className="scroll">{reference.quote}</p>
-                          <button className="readMore" onClick={() => {setReadMore(!readMore)}}>{showExtra}</button>
-                        </div>
-                        <div className="entryLine">
-                          <h5>Speaker:</h5>
-                          <p className="scroll">{reference.speaker}</p>
-                        </div>
-                        <div className="entryLine">
-                          <h5>Context:</h5>
-                          <p className="scroll">{reference.context}</p>
-                          <button className="readMore" onClick={() => { setReadMore(!readMore) }}>{showExtra}</button>
-                        </div>
-                        <div className="entryLine">
-                          <h5>Meaning:</h5>
-                          <p className="scroll">{reference.meaning}</p>
-                          <button className="readMore" onClick={() => { setReadMore(!readMore) }}>{showExtra}</button>
-                        </div>
-                        {(isAuthenticated && (user.sub === 'auth0|5ff1e3bfe00a83006e89c066' || user.sub === 'google-oauth2|114200838558211120591' || user.sub === 'google-oauth2|109142349949295009924' || user.sub === 'google-oauth2|105943216189762454578')) ? <button onClick={ () => postRefToDb(reference.subject, reference.timestamp, reference.quote, reference.speaker, reference.context, reference.meaning, item.seasonNumber, item.episodeNumber, i) }>Approve</button> : null}
-                      </article>
+                      <ApproveRefCard 
+                        key={i} 
+                        seasonNumber={seasonNumber} 
+                        episodeNumber={episodeNumber}
+                        reference={reference} 
+                        i={i}
+                      />
                     )
                   })
                 }
@@ -100,5 +73,12 @@ const NewReferencesDisplay = ()=> {
 
 
 export default NewReferencesDisplay;
+
+
+
+/*
+  
+
+*/
 
 
