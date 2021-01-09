@@ -58,7 +58,7 @@
         }
 
         p {
-            width: calc(70% - 50px);
+            width: calc(70% - 55px);
         }
 
         .scroll {
@@ -82,7 +82,7 @@
         button {
             display: inline-block;
             background: $colour6;
-            width: 250px;
+            width: calc((100% / 3 - 6px));
             font-family: inherit;
             font-size: 2rem;
             font-weight: 700;
@@ -92,7 +92,7 @@
             border-radius: 5px;
             border: none;
             padding: 10px 20px;
-            margin: 20px auto 0;
+            margin: 20px 3px 0;
             transition: all 0.5s;
 
             &:hover, &:focus {
@@ -105,10 +105,24 @@
             width: 50px;
             padding: 0;
             margin: 0;
+            margin-left: 5px;
 
             &:hover, &:focus {
                 background: $colour2;
                 color: $colour3;
+            }
+        }
+
+        .edit {
+            background: $colour5;
+            color: $colour3;
+            text-shadow: 1px 1px 1px $colour6;
+            border-radius: 5px;
+            padding: 4px;
+            margin-top: 4px;
+
+            &:hover, &:focus {
+                background: $colour2;
             }
         }
     }

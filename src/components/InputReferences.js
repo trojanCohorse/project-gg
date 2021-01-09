@@ -50,12 +50,16 @@ const InputReferences = () => {
     }
     
     // use the season number and episode number so that they can be used to check for the specific season and episode
+    const seaString = (seasonNum.value).toString()
+    const epString = (episodeNum.value).toString();
+    console.log(typeof seaString);
+    console.log(typeof epString);
     axios({
       method: 'POST',
       url: 'https://cors-anywhere.herokuapp.com/https://project-gg.herokuapp.com/seasons/add',
       data: {
-        "seasonNumber": seasonNum.value,
-        "episodeNumber": episodeNum.value,
+        "seasonNumber": seaString,
+        "episodeNumber": epString,
         "references": reference
     }
     }).then((res) => {
