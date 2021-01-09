@@ -39,6 +39,7 @@
         background: $colour4;
         max-width: 100%;
         border-radius: 5px;
+        text-align: left;
         color: $colour6;
         padding: 20px;
         overflow: hidden;
@@ -57,7 +58,7 @@
         }
 
         p {
-            width: 70%;
+            width: calc(70% - 50px);
         }
 
         .scroll {
@@ -66,7 +67,15 @@
             overflow-y: scroll;
         }
 
+        // conditionally rendered when the readMore button is clicked
+        .largeText {
+            align-self: stretch;
+            height: auto;
+        }
+
         .entryLine {
+            display: flex;
+            align-items: flex-start;
             width: 100%;
         }
 
@@ -85,6 +94,17 @@
             padding: 10px 20px;
             margin: 20px auto 0;
             transition: all 0.5s;
+
+            &:hover, &:focus {
+                background: $colour2;
+                color: $colour3;
+            }
+        }
+
+        .readMore {
+            width: 50px;
+            padding: 0;
+            margin: 0;
 
             &:hover, &:focus {
                 background: $colour2;

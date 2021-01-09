@@ -36,22 +36,21 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
         <p>{reference.timestamp}</p>
       </div>
       <div className="entryLine">
-        <h5>Quote:</h5>
-        <p className="scroll">{reference.quote}</p>
+        <h5 className={readMore.quote ? "largeText" : ""}>Quote:</h5>
+        <p className={readMore.quote ? "largeText" : "scroll"}>{reference.quote}</p>
         <button
           className="readMore"
           value="quote"
           onClick={handleReadMore}
         >{readMore.quote ? downArrow : upArrow}</button>
-        <p></p>
       </div>
       <div className="entryLine">
         <h5>Speaker:</h5>
         <p className="scroll">{reference.speaker}</p>
       </div>
       <div className="entryLine">
-        <h5>Context:</h5>
-        <p className="scroll">{reference.context}</p>
+        <h5 className={readMore.context ? "largeText" : ""}>Context:</h5>
+        <p className={readMore.context ? "largeText" : "scroll"}>{reference.context}</p>
         <button 
           className="readMore" 
           value="context"
@@ -59,8 +58,8 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
         >{readMore.context ? downArrow : upArrow}</button>
       </div>
       <div className="entryLine">
-        <h5>Meaning:</h5>
-        <p className="scroll">{reference.meaning}</p>
+        <h5 className={readMore.meaning ? "largeText" : ""}>Meaning:</h5>
+        <p className={readMore.meaning ? "largeText" : "scroll"}>{reference.meaning}</p>
         <button 
           className="readMore" 
           value="meaning"
