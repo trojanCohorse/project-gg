@@ -163,9 +163,9 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
           onClick={handleReadMore}
         >{readMore.meaning ? downArrow : upArrow}</button>
       </div>
-      {/* {
+      {
         (isAuthenticated && (user.sub === 'auth0|5ff1e3bfe00a83006e89c066' || user.sub === 'google-oauth2|114200838558211120591' || user.sub === 'google-oauth2|109142349949295009924' || user.sub === 'google-oauth2|105943216189762454578'))
-        ? */}
+        ?
           <AuthButtons
             key={i}
             seasonNumber={seasonNumber}
@@ -176,9 +176,9 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
             isEditable={isEditable}
             confirmChanges={confirmChanges}
           />
-        {/* :
+        :
           null
-      } */}
+      } 
       <section className="voteButtons">
         <button name="upvote" onClick={upvote} >
           <FontAwesomeIcon icon={faThumbsUp} />
