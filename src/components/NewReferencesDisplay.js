@@ -10,6 +10,7 @@ const NewReferencesDisplay = ()=> {
       method: 'GET',
       url: `https://project-gg.herokuapp.com/seasons/approve`
     }).then(res => {
+      // the below modifyTime and forEach method is to sort each reference by their timestamp
       const modifyTime = (timestamp) => {
         const inputMinutes = timestamp.match(/^\d+/)[0];
         const inputSeconds = timestamp.match(/\d+$/)[0];
@@ -57,7 +58,6 @@ const NewReferencesDisplay = ()=> {
               <div className="episodeContainer">
                 {
                   item.references.map((reference, i) => {
-                    reference.votes = 0;
                     return (
                       <ApproveRefCard 
                         key={i} 
