@@ -21,7 +21,7 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
   // allow edits to the content of the card
   const [isEditable, setIsEditable] = useState(false);
   // state for upvote buttons
-  const [votes, setVotes] = useState(reference.votes);
+  const [votes, setVotes] = useState(Number(reference.votes));
   const [refObj, setRefObj] = useState(reference);
   const [newRefObj, setNewRefObj] = useState({});
 
@@ -33,33 +33,43 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
     });
   }
 
-  const handleVote = () => {
+  const upvote = () => {
     if (reference.votes + 1 === votes) {
+      handleVotePatch(votes - 1);
       setVotes(votes - 1);
     } else {
       setVotes(votes + 1);
+      handleVotePatch(votes + 1);
     }
   }
 
+  const handleVotePatch = (newVote) => {
+    axios({
+      method: 'PATCH',
+      url: `http://127.0.0.1:5000/seasons/approve/like/${seasonNumber}/${episodeNumber}`,
+      data: { 
+        references: {
+          subject: refObj.subject
+        },
+        newVote: newVote
+      }
+    })
+  }
+
   const handleRefChange = (e, name) => {
-    console.log(e);
     if (!newRefObj[name]) {
       const newObj = refObj;
       newObj[name] = e.target.value;
       setNewRefObj(newObj);
-      console.log(newObj);
     } else {
       const newObj = newRefObj;
       newObj[name] = e.target.value;
-      console.log(newObj);
       setNewRefObj(newObj);
     }
   }
 
   const confirmChanges = () => {
     const toSet = newRefObj;
-    console.log(toSet);
-    console.log()
     setRefObj(toSet);
     setNewRefObj({});
     setIsEditable(false);
@@ -170,15 +180,10 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
           null
       } */}
       <section className="voteButtons">
-        <button name="upvote" onClick={handleVote} >
+        <button name="upvote" onClick={upvote} >
           <FontAwesomeIcon icon={faThumbsUp} />
         </button>
-        {votes && (
-          votes
-        )}
-        <button name="downvote" onClick={handleVote} >
-          <FontAwesomeIcon icon={faThumbsDown} />
-        </button>
+        {votes}
       </section>
     </article>
   )
