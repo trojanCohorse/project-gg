@@ -65,7 +65,7 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
     setIsEditable(false);
     axios({
       method: 'PUT',
-      url: `https://project-gg.herokuapp.com/seasons/approve/${refObj.seasonNumber}/${refObj.episodeNumber}`,
+      url: `https://project-gg.herokuapp.com/seasons/approve/3/21`,
       data: { 
         references: toSet
       }
