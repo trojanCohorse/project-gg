@@ -1,129 +1,170 @@
-.newRefs, .episodeInfo {
+.newRefs,
+.episodeInfo {
+  h3,
+  h4 {
+    background: $colour6;
+    font-family: $subHeading;
+  }
 
-    h3, h4 {
-        background: $colour6;
-        font-family: $subHeading;
-    }
-    
-    h3 {
-        font-size: 3rem;
-        border-radius: 5px 5px 0 0;
-        padding-top: 10px;
-    }
+  h3 {
+    font-size: 3rem;
+    border-radius: 5px 5px 0 0;
+    padding-top: 10px;
+  }
 
-    h4 {
-        font-size: 2.5rem;
-        border-radius: 0 0 5px 5px;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
+  h4 {
+    font-size: 2.5rem;
+    border-radius: 0 0 5px 5px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
 
-    // for .episodeInfo
-    img {
-        margin-top: 20px;
-        border-radius: 5px;
-    }
+  // for .episodeInfo
+  img {
+    margin-top: 20px;
+    border-radius: 5px;
+  }
 }
 
 .episodeInfo h3 {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .episodeContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    padding: 25px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding: 25px 0;
 
-    .episodeRef {
-        background: $colour4;
-        max-width: 100%;
-        border-radius: 5px;
-        text-align: left;
-        color: $colour6;
-        padding: 20px;
-        overflow: hidden;
-        
-        h5, p {
-            display: inline-block;
-            text-align: left;
-        }
+  .episodeRef {
+    background: $colour4;
+    max-width: 100%;
+    border-radius: 5px;
+    text-align: left;
+    color: $colour6;
+    padding: 20px;
+    overflow: hidden;
 
-        h5 {
-            background: $colour3;
-            width: calc(30% - 5px);
-            color: $colour1;
-            padding: 10px;
-            margin-right: 5px;
-        }
-
-        p {
-            width: calc(70% - 55px);
-        }
-
-        .scroll {
-            height: 20px;
-            overflow-x: wrap;
-            overflow-y: scroll;
-        }
-
-        // conditionally rendered when the readMore button is clicked
-        .largeText {
-            align-self: stretch;
-            height: auto;
-        }
-
-        .entryLine {
-            display: flex;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        button {
-            display: inline-block;
-            background: $colour6;
-            width: calc((100% / 3 - 6px));
-            font-family: inherit;
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            color: $colour3;
-            border-radius: 5px;
-            border: none;
-            padding: 10px 20px;
-            margin: 20px 3px 0;
-            transition: all 0.5s;
-
-            &:hover, &:focus {
-                background: $colour2;
-                color: $colour3;
-            }
-        }
-
-        .readMore {
-            width: 50px;
-            padding: 0;
-            margin: 0;
-            margin-left: 5px;
-
-            &:hover, &:focus {
-                background: $colour2;
-                color: $colour3;
-            }
-        }
-
-        .edit {
-            background: $colour5;
-            color: $colour3;
-            text-shadow: 1px 1px 1px $colour6;
-            border-radius: 5px;
-            padding: 4px;
-            margin-top: 4px;
-
-            &:hover, &:focus {
-                background: $colour2;
-            }
-        }
+    h5,
+    p {
+      display: inline-block;
+      text-align: left;
     }
+
+    h5 {
+      background: $colour3;
+      width: calc(30% - 5px);
+      color: $colour1;
+      padding: 10px;
+      margin-right: 5px;
+    }
+
+    p {
+      width: calc(70% - 55px);
+    }
+
+    .scroll {
+      height: 20px;
+      overflow-x: wrap;
+      overflow-y: scroll;
+    }
+
+    // conditionally rendered when the readMore button is clicked
+    .largeText {
+      align-self: stretch;
+      height: auto;
+    }
+
+    .entryLine {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    button {
+      display: inline-block;
+      background: $colour6;
+      width: calc((100% / 3 - 6px));
+      font-family: inherit;
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $colour3;
+      border-radius: 5px;
+      border: none;
+      padding: 10px 20px;
+      margin: 20px 3px 0;
+      transition: all 0.5s;
+
+      &:hover,
+      &:focus {
+        background: $colour2;
+        color: $colour3;
+      }
+    }
+
+    .readMore {
+      width: 50px;
+      padding: 0;
+      margin: 0;
+      margin-left: 5px;
+
+      &:hover,
+      &:focus {
+        background: $colour2;
+        color: $colour3;
+      }
+
+      svg {
+        pointer-events: none;
+      }
+    }
+
+    .edit {
+      background: $colour5;
+      color: $colour3;
+      text-shadow: 1px 1px 1px $colour6;
+      border-radius: 5px;
+      padding: 4px;
+      margin-top: 4px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: $colour2;
+      }
+    }
+
+    .authButtons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+
+    .voteButtons {
+      button {
+        background: none;
+        width: 50px;
+        color: $colour6;
+        border: none;
+
+        &:hover,
+        &:focus {
+          color: $colour2;
+        }
+
+        svg {
+          pointer-events: none;
+        }
+      }
+
+      /*
+      button[name="downvote"] {
+        transform: rotateY(180deg);
+      }
+      */
+    }
+  }
 }

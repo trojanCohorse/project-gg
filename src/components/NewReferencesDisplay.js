@@ -25,18 +25,23 @@ const NewReferencesDisplay = ()=> {
         })
         sortingTimestamps.push(obj);
       })
+      const sortedSeasons = sortingTimestamps.sort((a, b) => a.seasonNumber - b.seasonNumber || a.episodeNumber - b.episodeNumber);
+      // what happens on the line above is commented below, here
       /* const sortedSeasons = sortingTimestamps.sort((a, b) => {
-        if the number that is returned to the .sort is less than 0 sort *a* to a lower index than *b*
         if (a.seasonNumber < b.seasonNumber) {
+          if the number that is returned to the .sort is less than 0 sort *a* to a lower index than *b*
           return -1;
         } else if (a.seasonNumber > b.seasonNumber) {
           if the number that is returned is greater than 0 sort *a* 
           return 1;    
+        } else if (a.seasonNumber === b.seasonNumber) {
+          they are both in the correct position relative to each other
+          return 0;
         }
+        all of the above ^ is then executed for episodeNumber, within seasonNumber constraints
       }) */
-      const sortedSeasons = sortingTimestamps.sort((a, b) => a.seasonNumber - b.seasonNumber || a.episodeNumber - b.episodeNumber);
       setApprovalData(sortedSeasons);
-    }).catch(err => alert(err));
+    }).catch(err => console.log(err));
   }, [])
 
   return(
@@ -52,6 +57,7 @@ const NewReferencesDisplay = ()=> {
               <div className="episodeContainer">
                 {
                   item.references.map((reference, i) => {
+                    reference.votes = 0;
                     return (
                       <ApproveRefCard 
                         key={i} 
