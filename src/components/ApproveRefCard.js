@@ -46,7 +46,7 @@ const ApproveRefCard = ({ reference, seasonNumber, episodeNumber, i }) => {
   const handleVotePatch = (newVote) => {
     axios({
       method: 'PATCH',
-      url: `http://127.0.0.1:5000/seasons/approve/like/${seasonNumber}/${episodeNumber}`,
+      url: `https://project-gg.herokuapp.com/seasons/approve/like/${seasonNumber}/${episodeNumber}`,
       data: { 
         references: {
           subject: refObj.subject
